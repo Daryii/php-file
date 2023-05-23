@@ -24,14 +24,27 @@
     $tijd = date('H:i:s', time());
 
     $imageBase64 = '';
-
+    $newImagePath = '';
+    
     if ($tijd >= '00:06:00' && $tijd <= '00:12:00') {
-        $imagePath = '/var/www/Eind-opdracht/image/morning.png';
-        $imageBase64 = fotoVerander($imagePath);
-    } else if ($tijd >= '00:12:00' && $tijd <= '00:18:00') {
-        $imagePath = '/var/www/Eind-opdracht/image/afternoon.png';
-        $imageBase64 = fotoVerander($imagePath);
-    }
+        $newImagePath = '/var/www/Eind-opdracht/images/morning.png';
+        $imageBase64 = fotoVerander($newImagePath);
+        echo 'Goede morgen!<br>Het is nu'.$tijd;    
+
+    } else if ($tijd >= '00:12:00' && $tijd < '00:18:00') {
+        $newImagePath = '/var/www/Eind-opdracht/images/afternoon.png';
+        $imageBase64 = fotoVerander($newImagePath);
+        echo '<p class="nachtFoto">Goede middag!<br>Het is nu '.$tijd.'</p>';    
+
+    } else if ($tijd >= '00:18:00' && $tijd <= '00:00:00') {
+        $newImagePath = '/var/www/Eind-opdracht/images/evening.png';
+        $imageBase64 = fotoVerander($newImagePath);
+        echo '<p class="nachtFoto">Goede avond!<br>Het is nu '.$tijd.'</p>';    
+
+    } else {
+        $newImagePath = '/var/www/Eind-opdracht/images/night.png';
+        $imageBase64 = fotoVerander($newImagePath);
+        echo '<p class="nachtFoto">Goede nacht!<br>Het is nu '.$tijd.'</p>';    }
     ?>
 
     <img src="data:image/png;base64,<?php echo $imageBase64; ?>" alt="Image">
