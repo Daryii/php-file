@@ -8,7 +8,8 @@ body{
     position: relative;
 }
 
-.nachtFoto{
+p.nachtFoto{
+    font-size: large;
     position: relative;
     color: white;
     
