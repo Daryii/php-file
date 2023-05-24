@@ -1,16 +1,19 @@
 img{
     height: 100%;
     width: 100%;
-    
 }
 
-body{
-    position: relative;
-}
 
 p.nachtFoto{
     font-size: large;
-    position: relative;
-    color: white;
+    position: absolute;
+    color: rgb(35, 209, 110);
     
+}               
+
+
+
+.container {
+    width: 50%;
+    margin: 0 auto;
 }
