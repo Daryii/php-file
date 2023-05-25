@@ -8,11 +8,6 @@
     <title>Eind_opdracht</title>
 </head>
 <body>
-
-    <div class="container">    
-        </div>
-
-
     <?php
     $imageBase64 = '';
 
@@ -39,7 +34,7 @@
         if ($tijd >= '06:00:00' && $tijd <= '12:00:00') {
             $newImagePath = '/var/www/Eind-opdracht/images/morning.png';
             $imageBase64 = fotoVerander($newImagePath);
-            echo 'Goedemorgen!<br>Het is nu'.$tijd;    
+            echo 'Goedemorgen!<br>Het is nu '.$tijd;    
     
         } else if ($tijd >= '12:00:00' && $tijd < '18:00:00') {
             $newImagePath = '/var/www/Eind-opdracht/images/afternoon.png';
