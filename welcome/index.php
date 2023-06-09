@@ -13,8 +13,8 @@
 <?php
 
 
-    $name = $_GET['naam'];
-    $email = $_GET['email'];
+    $name = $_POST['naam'];
+    $email = $_POST['email'];
 
 
     echo "naam: " . $name . "<br>";
