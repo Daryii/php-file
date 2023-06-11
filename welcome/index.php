@@ -12,10 +12,20 @@
     
 <?php
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
 
-    $name = $_POST['naam'];
+    $name = test_input($_POST["naam"]);
     $email = $_POST['email'];
-
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+    
 
     echo "naam: " . $name . "<br>";
     echo "email: " . $email . "<br>";
