@@ -15,15 +15,22 @@ $name = $email = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST["name"])) {
     $name = test_input($_POST["name"]);
-  } else {
-    $nameErr = "Name is required";
+   
+    if (empty($name)) {
+      $nameErr = "Name is required";
   }
+}
 
+  
   if (isset($_POST["email"])) {
     $email = test_input($_POST["email"]);
-  } elseif (empty($_POST["email"])) {
-    $emailErr = "Email is required";
+    if (empty($email)) {
+      $emailErr = "Email is required";
+    } elseif (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+      $emailErr = "Invalid email format";
+      $email = "";
   } 
+}
 }
 
 
