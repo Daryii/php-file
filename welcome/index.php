@@ -1,37 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>  
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Welcome</title>
+<style>
+.error {color: #FF0000;}
+</style>
 </head>
-<body>
-    <h1>De ingevulde gegevens zijn:</h1>
-    
-<?php
+<body>  
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+<?php
+// define variables and set to empty values
+$nameErr = $emailErr = "";
+$name = $email = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST["name"])) {
+    $name = test_input($_POST["name"]);
+  } else {
+    $nameErr = "Name is required";
   }
 
-    $name = test_input($_POST["naam"]);
-    $email = $_POST['email'];
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed";
-    }
-    
+  if (isset($_POST["email"])) {
+    $email = test_input($_POST["email"]);
+  } elseif (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } 
+}
 
-    echo "naam: " . $name . "<br>";
-    echo "email: " . $email . "<br>";
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form Validation </h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Name: <input type="text" name="name">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
 
 ?>
 
-</script>
 </body>
 </html>
