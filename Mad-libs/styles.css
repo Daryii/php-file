@@ -1,0 +1,39 @@
+html{
+    background-color: gray;
+    padding: 20px;
+}
+
+main{
+    background-color: white;
+    padding: 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+
+
+nav{
+    background-color: #ab2513;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+
+label {
+    display: inline-block;
+    width: 300px;
+  }
+
+
+a:link {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+
+footer{
+    color: white;
+    background-color: #535245;
+    text-align: center;
+}
