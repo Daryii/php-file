@@ -37,7 +37,7 @@
         }
         ?>
 
-        <a href="onkunde.html">Terug naar Onkunde </a>
+        
     </main>
 
     <footer>
