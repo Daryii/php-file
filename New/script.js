@@ -33,3 +33,26 @@ toggleBtn.addEventListener('click', (event) => {
     sideBarIsOpen = true;
   }
 });
+
+
+document.addEventListener('click', function(e){
+    let clickedE1 = e.target;
+    
+    if (clickedE1.classList.contains('showHideSubMenu')) {
+        // console.log(clickedE1.closest('li'));
+        let subMenu = clickedE1.closest('li').querySelector('.subMenus');
+        let mainMenuitem = clickedE1.closest('li').querySelector('.mainMenuIconArrow');
+        
+    
+      if(subMenu != null ){
+        if(subMenu.style.display === 'block') {
+          subMenu.style.display = 'none';
+          mainMenuitem.classList.remove('fa-angle-left');
+          mainMenuitem.classList.add('fa-angle-left');
+          
+        } else subMenu.style.display = 'block';
+          mainMenuitem.classList.remove('fa-angle-left');
+          mainMenuitem.classList.add('fa-angle-down');
+      } 
+    }
+}); 

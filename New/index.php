@@ -4,7 +4,7 @@
   <meta charset="UTF-8">        
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
   <script src="https://use.fontawesome.com/0c7a3095b5.js"></script>
 </head>
 <body>
@@ -18,6 +18,6 @@
         </div>
       </div>
     </div>
-  <script src="script.js"></script>
+  <script src="script.js?v=<?= time(); ?>"></script>
 </body>
 </html>

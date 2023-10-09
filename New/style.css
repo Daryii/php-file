@@ -22,7 +22,7 @@ div.dashboard_content_container {
 }
 
 h4.dashboard_logo {
-    color: #c48181;
+    color: #695ede;
     font-size: 80px;
     text-align: center;
     margin-bottom: 10px;
@@ -40,7 +40,7 @@ div.dashboard_sidebar_user img {
     width: 80px;
     display: inline-block;
     border-radius: 50%;
-    border: 2px solid #c48181;
+    border: 2px solid #8e83de;
     margin-right: 5px;
     vertical-align: middle;
 }
@@ -57,29 +57,32 @@ ul.dashbaord_menu_list{
     margin-top: 20px;
 }
 
-ul.dashbaord_menu_list li {
-    padding: 15px 15px;
+ul.dashbaord_menu_list li.liMainmenu {
+    padding-top: 15px;
     text-transform: uppercase;
 }
 
-ul.dashbaord_menu_list li a{
+ul.dashbaord_menu_list li.liMainmenu a{
+    text-decoration: none;
     color: #fff;
-    height: auto;
     display: block;
-    font-size: 16px;
+    font-size: 15px;
+    padding: 15px 15px;
+
 }
 
-ul.dashbaord_menu_list li a i{
-    font-size: 23px;
+ul.dashbaord_menu_list li.liMainmenu a i{
+    font-size: 20px;
     margin-right: 5px;
+    padding-right: 0px;
 }
 
 ul.dashbaord_menu_list li.menuActive{
-    background: #f685a1;
+    background: #7a6cea;
     color: #fff;
 }
 ul.dashbaord_menu_list li:hover {
-    background-color: #c48181;
+    background-color: #a099cf;
     color: #fff;
     transition: 0.3s all;
 } 
@@ -102,4 +105,29 @@ div.dashboard_topNav a {
     background: #fff;
     min-height: 800px;
     height: 100%;
+}
+
+a.sublinks {
+    padding-left: 25px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px;
+    text-transform: none;
+    font-size: 15px !important;
+}
+
+a.sublinks i {
+    font-size: 16px !important;
+    width: 16px !important;
+}
+
+ul.subMenus {
+    background-color: rgb(105, 227, 141);
+    display: none;
+}
+
+
+i.mainMenuIconArrow {
+    float: right;
+    font-size: 19px !important;
+    margin-top:7px;
 }
