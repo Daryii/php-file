@@ -12,13 +12,13 @@
             </li>
             <li class="liMainmenu showHideSubMenu" >
                 <a href="javascript:void(0);" class="showHideSubMenu" >
-                    <i class="fa fa-user-plus showHideSubMenu"></i> 
-                    <span class="menuText showHideSubMenu">Product management</span>
+                    <i class="fa fa-tag showHideSubMenu"></i> 
+                    <span class="menuText showHideSubMenu">Product</span>
                     <i class="fa fa-angle-left mainMenuIconArrow showHideSubMenu"></i>
                 </a>    
                 <ul class="subMenus">
-                    <li><a class="sublinks" href="#"><i class="fa fa-circle-o"></i>Add Product</a></li>
-                    <li><a class="sublinks" href="#"><i class="fa fa-circle-o"></i>View Product</a></li>
+                    <li><a class="sublinks" href="./product-add.php"><i class="fa fa-circle-o"></i>Add Product</a></li>
+                    <li><a class="sublinks" href="./product-view.php"><i class="fa fa-circle-o"></i>View Product</a></li>
                 </ul>  
             </li>
         </ul>

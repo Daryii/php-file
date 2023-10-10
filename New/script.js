@@ -1,3 +1,5 @@
+// click function to check and change the styles when sideBar is open or closed.
+
 let sideBarIsOpen = true;
 
 toggleBtn.addEventListener('click', (event) => {
@@ -34,12 +36,12 @@ toggleBtn.addEventListener('click', (event) => {
   }
 });
 
+// click function for changing the style in the dropdown menu when clicked on.
 
 document.addEventListener('click', function(e){
     let clickedE1 = e.target;
     
     if (clickedE1.classList.contains('showHideSubMenu')) {
-        // console.log(clickedE1.closest('li'));
         let subMenu = clickedE1.closest('li').querySelector('.subMenus');
         let mainMenuitem = clickedE1.closest('li').querySelector('.mainMenuIconArrow');
         
@@ -47,12 +49,14 @@ document.addEventListener('click', function(e){
       if(subMenu != null ){
         if(subMenu.style.display === 'block') {
           subMenu.style.display = 'none';
-          mainMenuitem.classList.remove('fa-angle-left');
+          mainMenuitem.classList.remove('fa-angle-down');
           mainMenuitem.classList.add('fa-angle-left');
           
-        } else subMenu.style.display = 'block';
+        } else {
+          subMenu.style.display = 'block';
           mainMenuitem.classList.remove('fa-angle-left');
           mainMenuitem.classList.add('fa-angle-down');
+        } 
       } 
-    }
+    } 
 }); 

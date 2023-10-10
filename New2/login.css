@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background: url(images/background.jpg) no-repeat center fixed;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.loginHeader {
+    text-align: center;
+    margin-bottom: 60px;
+}
+  
+.loginHeader h1 {
+    font-size: 100px;
+    color: rgb(127, 7, 239);
+    padding: 0px;
+    margin: 0px;
+}
+  
+.loginHeader p {
+    color: #7655d1;
+    font-size: 50px;
+    margin: 0px; 
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+
+.loginHeader p:after {
+    content:'';
+    display: block;
+    height: 5px;
+    background: rgb(143, 117, 169);
+    margin: 0 auto;
+}
+
+.loginBody form {
+    margin: 0 auto;
+    width: 450px;
+    background:rgb(0,0,0,.5);
+    padding: 50px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+}
+
+.loginInputContainer {
+    margin-top: 30px;
+}
+.loginInputContainer label {
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.loginInputContainer input {
+    height: 25px;
+    width: 100%;
+    border: 2px solid #2368e9;
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+.loginButtonContainer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.loginButtonContainer button{
+    font-size: 20px;
+    padding: 10px 20px;
+    background: #63619f;
+    color: #fff;
+}
+
+/* Dashboard CSS */
+
+#dashboardMainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+div.dashboard_sidebar {
+    width: 20%;
+    background-color:  rgb(84, 88, 88);
+    height: 100vh;
+}
+
+div.dashboard_content_container {
+    width: 80%;
+    background: #f4f6f9;
+}
+
+h4.dashboard_logo {
+    color: #695ede;
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+div.dashboard_sidebar_user {
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white ;
+    
+}
+
+div.dashboard_sidebar_user img {
+    width: 80px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid #8e83de;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+div.dashboard_sidebar_user span {
+    top: 20%;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: white;
+    display: inline-block;
+}
+
+ul.dashbaord_menu_list{
+    margin-top: 20px;
+}
+
+ul.dashbaord_menu_list li.liMainmenu {
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+
+ul.dashbaord_menu_list li.liMainmenu a{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    padding: 15px 15px;
+
+}
+
+ul.dashbaord_menu_list li.liMainmenu a i{
+    font-size: 20px;
+    margin-right: 5px;
+    padding-right: 0px;
+}
+
+ul.dashbaord_menu_list li.menuActive{
+    background: #7a6cea;
+    color: #fff;
+}
+ul.dashbaord_menu_list li:hover {
+    background-color: #a099cf;
+    color: #fff;
+    transition: 0.3s all;
+} 
+
+div.dashboard_topNav {
+    background: #fff;
+    padding: 17px;
+}
+
+div.dashboard_topNav a {
+    color: gray;
+    font-size: 20px;
+}
+#logoutbtn{
+    float: right;
+}
+
+.dashboard_content {
+    padding: 50px 10px 10px 10px;
+}
+
+.dashboard_content_main {
+    background: #fff;
+    min-height: 800px;
+    height: 100%;
+}
+
+a.sublinks {
+    padding-left: 25px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px;
+    text-transform: none;
+    font-size: 15px !important;
+}
+
+a.sublinks i {
+    font-size: 16px !important;
+    width: 16px !important;
+}
+
+ul.subMenus {
+    background-color: rgb(105, 227, 141);
+    display: none;
+}
+
+
+i.mainMenuIconArrow {
+    float: right;
+    font-size: 19px !important;
+    margin-top:7px;
+}
