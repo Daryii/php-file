@@ -82,6 +82,13 @@ body {
     color: #fff;
 }
 
+div#errorMessage{
+    background-color: #fff;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+    padding: 11px;
+}
 /* Dashboard CSS */
 
 #dashboardMainContainer {
