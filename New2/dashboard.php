@@ -12,7 +12,7 @@
 <head>
   <meta charset="UTF-8">        
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="css/login.css">
   <script src="https://use.fontawesome.com/0c7a3095b5.js"></script>
   <title>Dashboard - Inventory Management System</title>
   

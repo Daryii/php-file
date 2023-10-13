@@ -8,7 +8,7 @@
         <ul class="dashbaord_menu_list">
         <!-- class="menuActive" -->
             <li class="liMainmenu">
-                <a href="#"><i class="fa fa-dashboard"></i> <span class="menuText">Dashboard</span></a>
+                <a href="dashboard.php"><i class="fa fa-dashboard"></i> <span class="menuText">Dashboard</span></a>
             </li>
             <li class="liMainmenu">
                 <a href="user_add.php"><i class="fa fa-user-plus"></i> <span class="menuText">add user</span></a>
