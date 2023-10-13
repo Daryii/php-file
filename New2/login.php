@@ -1,6 +1,10 @@
 <?php 
-
     session_start();
+    ob_start();
+    if(isset($_SESSION['user'])) header('location: dashboard.php');
+   
+
+    
 
     $error_message = '';
 
@@ -11,18 +15,21 @@
         $password = $_POST['password']; 
 
         
-
-        $query = 'SELECT * FROM users WHERE users.email="'. $username . '" AND users.password="'. $password .'" LIMIT 1';
+        $query = 'SELECT * FROM users WHERE users.email="'. $username . '" AND users.password="'. $password .'"';
         $stmt = $conn->prepare($query);
         $stmt->execute();
 
-        var_dump($stmt);
-        die;
-
+    
         if($stmt->rowCount() > 0){
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $user = $stmt->fetchAll()[0];
+            $_SESSION['user'] = $user;
+             
 
+            header('Location: dashboard.php');
         } else $error_message = 'Plz enter the correct username and password';
     }
+ 
 ?>
 
 <!DOCTYPE html>

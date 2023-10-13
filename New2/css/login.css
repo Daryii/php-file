@@ -10,7 +10,7 @@ body {
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+/* login CSS */
 .loginHeader {
     text-align: center;
     margin-bottom: 60px;
@@ -219,4 +219,14 @@ i.mainMenuIconArrow {
     float: right;
     font-size: 19px !important;
     margin-top:7px;
+}
+
+/* FORM CSS */
+
+form.appForm{
+    width: 50%;
+    border: 2px solid rgb(195, 183, 183);
+    padding: 10px;
+    margin: 0 auto;
+    
 }
