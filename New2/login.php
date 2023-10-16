@@ -29,7 +29,7 @@
             header('Location: dashboard.php');
         } else $error_message = 'Plz enter the correct username and password';
     }
- 
+    ob_end_flush();
 ?>
 
 <!DOCTYPE html>

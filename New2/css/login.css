@@ -270,3 +270,33 @@ button.appbtn{
     float: right;
     
 }
+
+p.responseMessage{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 33px;
+    padding: 20px;
+    /* background: rgba(128, 83, 0, 0.1); */
+}
+
+
+p.responseMessage__error {
+    background: rgba(128,0,0,0.1);
+}
+p.responseMessage__success {
+    background: rgba(0,128,0,0.1);
+}
+
+/* user add page */
+
+div.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+div.column{
+  width: 100%;
+}
+

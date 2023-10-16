@@ -14,6 +14,5 @@
   } catch (\Exception $e) {
       $error_message = $e->getMessage();
   }
-
 ?> 
 
