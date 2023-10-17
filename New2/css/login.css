@@ -262,9 +262,9 @@ form::after{
     
 }
 button.appbtn{
-    background-color:#f685a1 ;
+    background-color: #7a6cea;
     color: #fff;
-    border: 1px solid #f685a1;
+    border: 1px solid  #7a6cea;
     padding: 10px;
     margin-top: 20px;
     float: right;
@@ -289,14 +289,62 @@ p.responseMessage__success {
 
 /* user add page */
 
-div.row{
+.row{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
 }
 
-div.column{
+.column{
   width: 100%;
+  padding: 0px 10px;
 }
 
+ .column-5{
+    width: 41.67%;
+}
+
+.column-7{
+    width: 58.33%;
+} 
+
+.section_header {
+    font-size: 21px;
+    color:  #7a6cea;
+    border-bottom: 1px solid #c5caf2;
+    padding-bottom: 11px;
+    padding: 10px;
+    border-left: 4px solid #7a6cea;
+    margin-bottom: 15px;
+}
+
+table, th, td {
+    border: 1px solid #7a6cea;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+
+table th{
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #f4f5f7;
+}
+
+table td{
+    font-size: 12px;
+    text-align: center;
+    padding: 5px;
+}
+
+.userCount {
+    text-align: right;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #7a6cea;
+}
