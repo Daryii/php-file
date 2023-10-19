@@ -199,23 +199,31 @@
                         email: document.getElementById('emailUpdated').value,
                       },
                       url: 'db/update-user.php',
-                      dataType: 'json',
-                      success: function(data){
-                        if(data.success){   
-                            bootbox.alert({
-                              type: bootbox.TYPE_SUCCESS,
-                              message: data.message,
-                              callback: function(){
-                                location.reload();
-                              }
-                            });
-                        } else 
-                            bootbox.alert({
-                              type: bootbox.TYPE_DANGER,
-                              message: data.message,
-                            });
-                      }
-                })
+                      dataType: 'json' 
+                      // success: function (data) {
+                      //   // if (data.success) {
+                      //   //   // Display a success message using Bootbox
+                      //   //   bootbox.alert({
+                      //   //     title: 'Success',
+                      //   //     message: data.message,
+                      //   //     size: 'small', // Adjust the size if needed
+                      //   //     backdrop: true,
+                      //   //     callback: function () {
+                      //   //       // Reload the page after the success alert
+                      //   //       location.reload();
+                      //   //     }
+                      //   //   });
+                      //   // } else {
+                      //   //   // Display an error message using Bootbox
+                      //   //   bootbox.alert({
+                      //   //     title: 'Error',
+                      //   //     message: data.message,
+                      //   //     size: 'small', // Adjust the size if needed
+                      //   //     backdrop: true
+                      //   //   });
+                      //   // }
+                      // }
+                    })
                   } 
                 }
 
