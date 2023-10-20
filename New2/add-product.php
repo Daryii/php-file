@@ -1,9 +1,9 @@
 <?php
   session_start();
   if(!isset($_SESSION['user'])) header('location: login.php');
-  $_SESSION['table'] = 'users';
+  
+  $_SESSION['table'] = 'products';
   $user = $_SESSION['user']; 
-  $users = include('db/show-users.php');
   
 ?>
 
@@ -17,7 +17,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <script src="https://use.fontawesome.com/0c7a3095b5.js"></script>
-  <title>Dashboard - Inventory Management System</title>  
+  <title>Add Product - Inventory Management System</title>  
 </head>
 <body>
 
@@ -29,31 +29,21 @@
                 <div class="dashboard_content_main">
                     <div class="row">
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-plus"></i>Create User</h1>
+                            <h1 class="section_header"><i class="fa fa-plus"></i>Create Product</h1>
                             <div id="userAddFormContainer">
                                 <form action="db/userdb.php" method="POST" class="appForm">
 
                                   <div class="appformInputcontainer">
-                                    <label for="first_name">First Name</label>
-                                    <input type="text"class="formInput" id="first_name" name="first_name" /> 
+                                    <label for="product_name">Product Name</label>
+                                    <input type="text"class="formInput" id="product_name" placeholder="Enter product name..." name="product_name" /> 
                                   </div>
 
                                   <div class="appformInputcontainer">
-                                    <label for="last_name">Last Name</label>
-                                    <input type="text" class="formInput" id="last_name" name="last_name" /> 
+                                    <label for="description">Description</label>
+                                    <textarea class="formInput productTextArea" id="description" placeholder="Enter product description..." name="description"></textarea>
                                   </div>
-
-                                  <div class="appformInputcontainer">
-                                    <label for="email">E-mail</label>
-                                    <input type="text" class="formInput" id="email" name="email" /> 
-                                  </div>
-
-                                  <div class="appformInputcontainer">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="formInput" id="password" name="password" /> 
-                                  </div>
-
-                                  <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Add User</button>
+ 
+                                  <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Add Product</button>
                                 </form>
                                 <?php 
                                       if(isset($_SESSION['response'])){ 

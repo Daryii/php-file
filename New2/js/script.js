@@ -39,13 +39,20 @@ toggleBtn.addEventListener('click', (event) => {
 // click function for changing the style in the dropdown menu when clicked on.
 
 document.addEventListener('click', function(e){
+
     let clickedE1 = e.target;
     
     if (clickedE1.classList.contains('showHideSubMenu')) {
         let subMenu = clickedE1.closest('li').querySelector('.subMenus');
         let mainMenuitem = clickedE1.closest('li').querySelector('.mainMenuIconArrow');
         
-    
+        
+        let subMenus = document.querySelectorAll('.subMenus');
+        // console.log(subMenus);
+        subMenus.forEach(sub => {
+            if(subMenu !== sub) sub.style.display = 'none';
+        });
+
         if(subMenu != null ){
         if(subMenu.style.display === 'block') {
             subMenu.style.display = 'none';

@@ -194,6 +194,8 @@ div.dashboard_topNav a {
     background: #fff;
     min-height: 800px;
     height: 100%;
+    padding-left: 20px;
+    border: 1px solid rgb(237, 230, 230);
 }
 
 a.sublinks {
@@ -347,4 +349,13 @@ table td{
     font-weight: bold;
     text-transform: uppercase;
     color: #7a6cea;
+}
+
+/* PRODUCT CSS */
+
+.productTextArea {
+    width: 100%;
+    height: 75px;
+    border-radius: 8px;
+    border-color: #d7d7d7;
 }
