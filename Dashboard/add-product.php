@@ -1,8 +1,8 @@
 <?php
   session_start();
   if(!isset($_SESSION['user'])) header('location: login.php');
-  
   $_SESSION['table'] = 'products';
+  $_SESSION['redirect_to'] = 'add-product.php';
   $user = $_SESSION['user']; 
   
 ?>
@@ -31,17 +31,22 @@
                         <div class="column column-12">
                             <h1 class="section_header"><i class="fa fa-plus"></i>Create Product</h1>
                             <div id="userAddFormContainer">
-                                <form action="db/userdb.php" method="POST" class="appForm">
+                                <form action="db/userdb.php" method="POST" class="appForm" enctype="multipart/form-data">
 
                                   <div class="appformInputcontainer">
                                     <label for="product_name">Product Name</label>
-                                    <input type="text"class="formInput" id="product_name" placeholder="Enter product name..." name="product_name" /> 
+                                    <input type="text" class="formInput" class="addFormspacing" id="product_name" placeholder="Enter product name..." name="product_name" /> 
                                   </div>
 
                                   <div class="appformInputcontainer">
                                     <label for="description">Description</label>
-                                    <textarea class="formInput productTextArea" id="description" placeholder="Enter product description..." name="description"></textarea>
+                                    <textarea class="formInput productTextArea" class="addFormspacing" id="description" placeholder="Enter product description..." name="description"></textarea>
                                   </div>
+
+                                  <div class="appformInputcontainer">
+                                    <label for="product_img">Product Image</label>
+                                    <input type="file" class="addFormspacing" name="img" />
+                                  </div> 
  
                                   <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Add Product</button>
                                 </form>
