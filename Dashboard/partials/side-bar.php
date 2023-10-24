@@ -1,3 +1,7 @@
+<?php
+    $user = $_SESSION['user'];
+?>
+
 <div class="dashboard_sidebar" id="dashboard_sidebar">
     <h4 class="dashboard_logo" id="dashboard_logo">SB</h4>
     <div class="dashboard_sidebar_user">

@@ -359,3 +359,8 @@ table td{
     border-radius: 8px;
     border-color: #d7d7d7;
 }
+
+.productImages{
+    height: 100px;
+    width: 100px;
+}

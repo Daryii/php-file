@@ -1,12 +1,11 @@
 <?php
   session_start();
   if(!isset($_SESSION['user'])) header('location: login.php');
-  $_SESSION['table'] = 'users';
-  $user = $_SESSION['user']; 
-  $users = include('db/show-users.php');
+  $_SESSION['table'] = 'products';
+  
+  $products = include('db/show.php');
   
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +16,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <script src="https://use.fontawesome.com/0c7a3095b5.js"></script>
-  <title>Dashboard - Inventory Management System</title>  
+  <title>View Product - Inventory Management System</title>
 </head>
 <body>
 
@@ -30,39 +29,43 @@
                     <div class="row">
                         
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-list"></i> User List</h1>
+                            <h1 class="section_header"><i class="fa fa-list"></i> Products List</h1>
                             <div class="section_content">
                               <div class="users">
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>First_name</th>
-                                            <th>Last_name</th>
-                                            <th>Email</th>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Description</th>
+                                            <th>Created By</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                       <tbody>
-                                          <?php foreach($users as $index => $user){ ?>   
+                                          <?php foreach($products as $index => $product){ ?>   
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td class="firstName"><?= $user['first_name'] ?></td>
-                                                <td class="lastName"><?= $user['last_name'] ?></td>
-                                                <td class="email"><?= $user['email'] ?></td>
-                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($user['created_at'])) ?></td>
-                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($user['updated_at'])) ?></td>
+                                                <td class="Image"> 
+                                                  <img class="productImages" src="uploads/products/<?= $product['img'] ?>" alt=""/>
+                                                </td>
+                                                <td class="lastName"><?= $product['product_name'] ?></td>
+                                                <td class="email"><?= $product['description'] ?></td>
+                                                <td><?= $product['created_by'] ?></td>
+                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($product['created_at'])) ?></td>
+                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($product['updated_at'])) ?></td>
                                                 <td>
-                                                  <a href="" class="editUser" data-userid="<?= $user['id']?>" ><i class="fa fa-pencil"></i>Edit</a>
-                                                  <a href="" class="deleteUser" data-userid="<?= $user['id']?>" data-fname="<?= $user['first_name']?>" data-lname="<?= $user['last_name']?>"  ><i class="fa fa-trash"></i>Delete</a>
+                                                  <a href="" class="editProduct" data-pid="<?= $user['id'] ?>" ><i class="fa fa-pencil"></i>Edit</a>
+                                                  <a href="" class="deleteProduct" data-name="<?= $product['product_name']?>" data-description="<?= $product['description']?>" data-pid="<?= $user['id'] ?>" ><i class="fa fa-trash"></i>Delete</a>
                                                 </td>
                                             </tr>
                                           <?php }?>
                                       </tbody>
                                 </table>
-                                <p class="userCount"><?=count($users)?>Users</p>
+                                <p class="userCount"><?=count($products)?> Products</p>
                               </div>
                             </div>
                         </div>
@@ -78,103 +81,50 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  
-    function script(){
-      
-      this.initialize = function(){
-          this.registerEvents();
-      },
-
-      this.registerEvents = function(){
-          document.addEventListener('click', function(e){
-            targetElement = e.target;
-            classList = targetElement.classList;
-
-            if(classList.contains('deleteUser')){
-              e.preventDefault();
-              userId = targetElement.dataset.userid;
-              fname = targetElement.dataset.fname;
-              lname = targetElement.dataset.lname;
-              fullname = fname + ' ' + lname;
-
-              if(window.confirm('Are you sure to delete '+ fullname +'?')){
-                $.ajax({
-                  method: 'POST',
-                  data: {
-                    user_id: userId,
-                    f_name: fname,
-                    l_name: lname  
-                  },
-                  url: 'db/delete-user.php',
-                  dataType: 'json',
-                  success: function(data){
-                    if(data.success){
-                        if(window.confirm(data.message)){
-                          location.reload();
-                        }
-                    } else window.alert(data.message);  
-                    
-                  }
-                })
-              }
-                
-            }
-            if(classList.contains('editUser')){
-              e.preventDefault(); // Prevent loading.;
-
-              // getting data
-              
-              firstName = targetElement.closest('tr').querySelector('td.firstName').innerHTML;
-              lastName = targetElement.closest('tr').querySelector('td.lastName').innerHTML;
-              email = targetElement.closest('tr').querySelector('td.email').innerHTML;
-              userId = targetElement.dataset.userid;
-
-
-              bootbox.confirm({
-                title: 'Update ' + firstName + ' ' + lastName,
-                message: '<form>\
-                  <div class="form-group">\
-                      <label for="firstName">First Name:<label>\
-                      <input type="text" class="form-control" id="firstName" value="'+ firstName +'">\
-                    </div>\
-                    <div class="form-group">\
-                      <label for="lastName">last Name:<label>\
-                      <input type="text" class="form-control" id="lastName" value="'+ lastName +'">\
-                    </div>\
-                  <div class="form-group">\
-                      <label for="email">Email address:<label>\
-                      <input type="email" class="form-control" id="emailUpdated" value="'+ email +'">\
-                    </div>\
-                </form>',
-                
-                callback: function (isUpdate) {
-                  if(isUpdate){
-                    $.ajax({
-                      method: 'POST',
-                      data: {
-                        user_id: userId,
-                        f_name: document.getElementById('firstName').value,
-                        l_name: document.getElementById('lastName').value,
-                        email: document.getElementById('emailUpdated').value,
-                      },
-                      url: 'db/update-user.php',
-                      dataType: 'json' 
-                    })
-                  } 
-                }
-
-
-
-              });
-           
-            }
-          });
-      }
-    }
-
-    var script = new script;
-    script.initialize();
+function script(){
     
+    this.initialize = function(){
+        this.registerEvents();
+    },
+
+    this.registerEvents = function(){
+        document.addEventListener('click', function(e){
+          targetElement = e.target;
+          classList = targetElement.classList;
+
+          if(classList.contains('deleteProduct')){
+            e.preventDefault();
+            
+            pid = targetElement.dataset.pid;
+            pName = targetElement.dataset.pName;
+
+            if(window.confirm('Are you sure to delete '+ pName +'?')){
+              $.ajax({
+                method: 'POST',
+                data: {
+                  id: pid,
+                  name: pName 
+                },
+                url: 'db/delete-product.php',
+                dataType: 'json',
+                success: function(data){
+                  if(data.success){
+                      if(window.confirm(data.message)){
+                        location.reload();
+                      }
+                  } else window.alert(data.message);
+                }
+              })
+            }
+              
+          }
+        });
+    }
+  }
+
+  var script = new script;
+  script.initialize();
+
 </script>
 </body>
 </html>

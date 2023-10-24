@@ -3,7 +3,9 @@
   if(!isset($_SESSION['user'])) header('location: login.php');
   $_SESSION['table'] = 'users';
   $user = $_SESSION['user']; 
-  $users = include('db/show-users.php');
+
+  $_SESSION['table'] = 'users';
+  $users = include('db/show.php');
   
 ?>
 
@@ -78,125 +80,125 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  
-    function script(){
-      
-      this.initialize = function(){
-          this.registerEvents();
-      },
 
-      this.registerEvents = function(){
-          document.addEventListener('click', function(e){
-            targetElement = e.target;
-            classList = targetElement.classList;
+  function script(){
+    
+    this.initialize = function(){
+        this.registerEvents();
+    },
 
-            if(classList.contains('deleteUser')){
-              e.preventDefault();
-              userId = targetElement.dataset.userid;
-              fname = targetElement.dataset.fname;
-              lname = targetElement.dataset.lname;
-              fullname = fname + ' ' + lname;
+    this.registerEvents = function(){
+        document.addEventListener('click', function(e){
+          targetElement = e.target;
+          classList = targetElement.classList;
 
-              if(window.confirm('Are you sure to delete '+ fullname +'?')){
-                $.ajax({
-                  method: 'POST',
-                  data: {
-                    user_id: userId,
-                    f_name: fname,
-                    l_name: lname  
-                  },
-                  url: 'db/delete-user.php',
-                  dataType: 'json',
-                  success: function(data){
-                    if(data.success){
-                        if(window.confirm(data.message)){
-                          location.reload();
-                        }
-                    } else window.alert(data.message);  
-                    
-                  }
-                })
-              }
-                
-            }
-            if(classList.contains('editUser')){
-              e.preventDefault(); // Prevent loading.;
+          if(classList.contains('deleteUser')){
+            e.preventDefault();
+            userId = targetElement.dataset.userid;
+            fname = targetElement.dataset.fname;
+            lname = targetElement.dataset.lname;
+            fullname = fname + ' ' + lname;
 
-              // getting data
-              
-              firstName = targetElement.closest('tr').querySelector('td.firstName').innerHTML;
-              lastName = targetElement.closest('tr').querySelector('td.lastName').innerHTML;
-              email = targetElement.closest('tr').querySelector('td.email').innerHTML;
-              userId = targetElement.dataset.userid;
-
-
-              bootbox.confirm({
-                title: 'Update ' + firstName + ' ' + lastName,
-                message: '<form>\
-                  <div class="form-group">\
-                      <label for="firstName">First Name:<label>\
-                      <input type="text" class="form-control" id="firstName" value="'+ firstName +'">\
-                    </div>\
-                    <div class="form-group">\
-                      <label for="lastName">last Name:<label>\
-                      <input type="text" class="form-control" id="lastName" value="'+ lastName +'">\
-                    </div>\
-                  <div class="form-group">\
-                      <label for="email">Email address:<label>\
-                      <input type="email" class="form-control" id="emailUpdated" value="'+ email +'">\
-                    </div>\
-                </form>',
-                
-                callback: function (isUpdate) {
-                  if(isUpdate){
-                    $.ajax({
-                      method: 'POST',
-                      data: {
-                        user_id: userId,
-                        f_name: document.getElementById('firstName').value,
-                        l_name: document.getElementById('lastName').value,
-                        email: document.getElementById('emailUpdated').value,
-                      },
-                      url: 'db/update-user.php',
-                      dataType: 'json' 
-                      // success: function (data) {
-                      //   // if (data.success) {
-                      //   //   // Display a success message using Bootbox
-                      //   //   bootbox.alert({
-                      //   //     title: 'Success',
-                      //   //     message: data.message,
-                      //   //     size: 'small', // Adjust the size if needed
-                      //   //     backdrop: true,
-                      //   //     callback: function () {
-                      //   //       // Reload the page after the success alert
-                      //   //       location.reload();
-                      //   //     }
-                      //   //   });
-                      //   // } else {
-                      //   //   // Display an error message using Bootbox
-                      //   //   bootbox.alert({
-                      //   //     title: 'Error',
-                      //   //     message: data.message,
-                      //   //     size: 'small', // Adjust the size if needed
-                      //   //     backdrop: true
-                      //   //   });
-                      //   // }
-                      // }
-                    })
-                  } 
+            if(window.confirm('Are you sure to delete '+ fullname +'?')){
+              $.ajax({
+                method: 'POST',
+                data: {
+                  user_id: userId,
+                  f_name: fname,
+                  l_name: lname  
+                },
+                url: 'db/delete-user.php',
+                dataType: 'json',
+                success: function(data){
+                  if(data.success){
+                      if(window.confirm(data.message)){
+                        location.reload();
+                      }
+                  } else window.alert(data.message);  
+                  
                 }
-
-
-
-              });
-           
+              })
             }
-          });
-      }
-    }
+              
+          }
+          if(classList.contains('editUser')){
+            e.preventDefault(); // Prevent loading.;
 
-    var script = new script;
-    script.initialize();
+            // getting data
+            
+            firstName = targetElement.closest('tr').querySelector('td.firstName').innerHTML;
+            lastName = targetElement.closest('tr').querySelector('td.lastName').innerHTML;
+            email = targetElement.closest('tr').querySelector('td.email').innerHTML;
+            userId = targetElement.dataset.userid;
+
+
+            bootbox.confirm({
+              title: 'Update ' + firstName + ' ' + lastName,
+              message: '<form>\
+                <div class="form-group">\
+                    <label for="firstName">First Name:<label>\
+                    <input type="text" class="form-control" id="firstName" value="'+ firstName +'">\
+                  </div>\
+                  <div class="form-group">\
+                    <label for="lastName">last Name:<label>\
+                    <input type="text" class="form-control" id="lastName" value="'+ lastName +'">\
+                  </div>\
+                <div class="form-group">\
+                    <label for="email">Email address:<label>\
+                    <input type="email" class="form-control" id="emailUpdated" value="'+ email +'">\
+                  </div>\
+              </form>',
+              
+              callback: function (isUpdate) {
+                if(isUpdate){
+                  $.ajax({
+                    method: 'POST',
+                    data: {
+                      user_id: userId,
+                      f_name: document.getElementById('firstName').value,
+                      l_name: document.getElementById('lastName').value,
+                      email: document.getElementById('emailUpdated').value,
+                    },
+                    url: 'db/update-user.php',
+                    dataType: 'json' 
+                    // success: function (data) {
+                    //   // if (data.success) {
+                    //   //   // Display a success message using Bootbox
+                    //   //   bootbox.alert({
+                    //   //     title: 'Success',
+                    //   //     message: data.message,
+                    //   //     size: 'small', // Adjust the size if needed
+                    //   //     backdrop: true,
+                    //   //     callback: function () {
+                    //   //       // Reload the page after the success alert
+                    //   //       location.reload();
+                    //   //     }
+                    //   //   });
+                    //   // } else {
+                    //   //   // Display an error message using Bootbox
+                    //   //   bootbox.alert({
+                    //   //     title: 'Error',
+                    //   //     message: data.message,
+                    //   //     size: 'small', // Adjust the size if needed
+                    //   //     backdrop: true
+                    //   //   });
+                    //   // }
+                    // }
+                  })
+                } 
+              }
+
+
+
+            });
+          
+          }
+        });
+    }
+  }
+
+  var script = new script;
+  script.initialize();
     
 </script>
 </body>
