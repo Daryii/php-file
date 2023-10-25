@@ -1,9 +1,7 @@
 <?php
-
     $data = $_POST;
-    $id = (int)$data['id'];
-    
-    
+    $id = (int) $data['pid'];
+
 
     try {
         $command = "DELETE FROM products WHERE id={$id}";
@@ -20,10 +18,8 @@
         
         echo json_encode([
             'success' => false,
-            'message' => 'Error processing your request!'
+            'message' => $e->getMessage()
         ]);
-       
     }
-
 ?>
 
