@@ -1,10 +1,11 @@
 <?php
     $data = $_POST;
-    $id = (int) $data['pid'];
+    $user_id = (int) $data['user_id'];
+
 
 
     try {
-        $command = "DELETE FROM products WHERE id={$id}";
+        $command = "DELETE FROM products WHERE id={$user_id}";
         include('connection.php');
 
         $conn->exec($command);

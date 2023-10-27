@@ -20,10 +20,8 @@
         // Remove any extra spaces from the column name
         $column = trim($column);
 
-        if (in_array($column, ['created_at', 'updated_at'])) {
+        if (in_array($column, ['updated_at'])) {
             $value = date('Y-m-d H:i:s');
-        } elseif ($column == 'created_by') {
-            $value = $user['id'];
         } elseif ($column == 'password') {
             $value =  password_hash($_POST[$column], PASSWORD_DEFAULT);
         } elseif ($column == 'img') {

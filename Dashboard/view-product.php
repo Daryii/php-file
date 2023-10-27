@@ -16,7 +16,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
   <script src="https://use.fontawesome.com/0c7a3095b5.js"></script>
-  <title>View Product - Inventory Management System</title>
+  <title>Bekijk product</title>
 </head>
 <body>
 
@@ -29,20 +29,20 @@
                     <div class="row">
                         
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-list"></i> Products List</h1>
+                            <h1 class="section_header"><i class="fa fa-list"></i>Producten Lijst</h1>
                             <div class="section_content">
                               <div class="users">
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>Description</th>
-                                            <th>Created By</th>
-                                            <th>Created At</th>
-                                            <th>Updated At</th>
-                                            <th>Action</th>
+                                            <th>Afbeelding</th>
+                                            <th>Productnaam</th>
+                                            <th>Voorraad</th>
+                                            <th>Beschrijving</th>
+                                            <th>Gemaakt door</th>
+                                            <th>Bijgewerkt op</th>
+                                            <th>Actie</th>
                                         </tr>
                                     </thead>
                                       <tbody>
@@ -52,20 +52,20 @@
                                                 <td class="Image"> 
                                                   <img class="productImages" src="uploads/products/<?= $product['img'] ?>" alt=""/>
                                                 </td>
-                                                <td class="productName"><?= $product['product_name'] ?></td>
-                                                <td class="Description"><?= $product['description'] ?></td>
+                                                <td class="productName"><?= $product['product_name'] ?></td>                                  
+                                                <td class="stock"><?= $product['stock'] ?></td>
+                                                <td class="description"><?= $product['description'] ?></td>
                                                 <td class="created_by"><?= $product['created_by'] ?></td>
-                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($product['created_at'])) ?></td>
                                                 <td><?= date('M d,Y @ h:i:s A' , strtotime($product['updated_at'])) ?></td>
                                                 <td>
-                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>" ><i class="fa fa-pencil"></i> Edit</a>
-                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_name'] ?>" data-pid="<?= $product['id'] ?>"><i class="fa fa-trash"></i> Delete</a>
+                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>" ><i class="fa fa-pencil"></i>Bewerken</a>
+                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_name'] ?>" data-pid="<?= $product['id'] ?>"><i class="fa fa-trash"></i>Verwijderen</a>
                                                 </td>
                                             </tr>
                                           <?php }?>
                                       </tbody>
                                 </table>
-                                <p class="userCount"><?=count($products)?> Products</p>
+                                <p class="userCount"><?=count($products)?> Producten</p>
                               </div>
                             </div>
                         </div>
@@ -86,75 +86,77 @@
             targetElement = e.target;
             classList = targetElement.classList;
 
-            if (classList.contains("deleteProduct")) {
+            if (classList.contains('deleteProduct')) {
                 e.preventDefault();
 
-                pId = targetElement.dataset.pid;
+                userId = targetElement.dataset.pid;
                 pName = targetElement.dataset.name;
-
+                
+                // Delete user logic (place your delete code here)
                 Swal.fire({
-                    title: "Delete Product?",
-                    text: `Are you sure to delete ${pName}?`,
-                    icon: "warning",
+                    title: 'Gebruiker verwijderen?',
+                    text: `Weet je zeker dat je ${pName} wilt verwijderen?`,
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: "Yes, delete it",
-                    cancelButtonText: "No, cancel",
+                    confirmButtonText: 'Ja, verwijderen',
+                    cancelButtonText: 'Nee, annuleren',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // User confirmed, proceed with deletion
+                        // User confirmed, proceed with delete
                         $.ajax({
-                            method: "POST",
+                            method: 'POST',
                             data: {
-                                id: pId,
+                                user_id: userId,
+                                p_name: pName
                             },
-                            url: "db/delete-product.php",
-                            dataType: "json",
+                            url: 'db/delete_product.php', // Replace with the actual delete URL
+                            dataType: 'json',
                             success: function (data) {
                                 if (data.success) {
-                                    Swal.fire("Success", data.message, "success").then(() => {
+                                    Swal.fire('Success', data.message, 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire("Error", data.message, "error");
+                                    Swal.fire('Error', data.message, 'error');
                                 }
                             },
                         });
                     }
                 });
-            } 
+            }
             if (classList.contains("editProduct")) {
                 e.preventDefault();
 
                 // Getting data
                 userId = targetElement.dataset.pid;
-                Productname = targetElement.closest('tr').querySelector('.productName');
-                Description = targetElement.closest('tr').querySelector('.Description');
-                Created_by = targetElement.closest('tr').querySelector('.created_by');
-                Img = targetElement.closest('tr').querySelector('.Image');
+                Productname = targetElement.closest('tr').querySelector('td.productName').innerHTML;
+                Stock = targetElement.closest('tr').querySelector('td.stock').innerHTML;
+                Description = targetElement.closest('tr').querySelector('td.description').innerHTML;
+                Created_by = targetElement.closest('tr').querySelector('td.created_by').innerHTML;
 
                 Swal.fire({
                     title: 'Update ' + Productname,
                     html: `
                         <div class="form-group">
-                            <label for="Productname">Product Name:</label>
+                            <label for="Productname" class="labelSpacing">Productnaam:</label>
                             <input type="text" class="form-control" id="Productname" value="${Productname}">
                         </div>
                         <div class="form-group">
-                            <label for="Description">Description:</label>
+                            <label for="Description" class="labelSpacing">Beschrijving:</label>
                             <input type="text" class="form-control" id="Description" value="${Description}">
                         </div>
                         <div class="form-group">
-                            <label for="Created_by">Created by:</label>
-                            <input type="url" class="form-control" id="created_by" value="${Created_by}">
+                            <label for="stock" class="labelSpacing">Voorraad:</label>
+                            <input type="text" class="form-control" id="stock" value="${Stock}">
                         </div>
                         <div class="form-group">
-                            <label for="Img">Img:</label>
-                            <input type="file" class="form-control" id="img" value="${Img}">
+                            <label for="created_by" class="labelSpacing">Gemaakt door:</label>
+                            <input type="text" class="form-control" id="created_by" value="${Created_by}">
                         </div>
                     `,
                     showCancelButton: true,
                     confirmButtonText: 'Update',
-                    cancelButtonText: 'Cancel',
+                    cancelButtonText: 'Annuleren',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // User confirmed, proceed with update
@@ -164,15 +166,15 @@
                                 User_id: userId,
                                 p_name: document.getElementById('Productname').value,
                                 Description: document.getElementById('Description').value,
+                                stock_p: document.getElementById('stock').value,
                                 created_by: document.getElementById('created_by').value,
-                                Image: document.getElementById('img').value,
                             },
                             url: 'db/update-product.php',
                             dataType: 'json',
                             success: function (data) {
                                 if (data.success) {
                                     Swal.fire('Success', data.message, 'success').then(() => {
-                                        // You can add any additional actions after a successful update here
+                                        location.reload();
                                     });
                                 } else {
                                     Swal.fire('Error', data.message, 'error');

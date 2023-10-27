@@ -17,7 +17,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <script src="https://use.fontawesome.com/0c7a3095b5.js"></script>
-  <title>Add Product - Inventory Management System</title>  
+  <title>Producten Toevoegen</title>  
 </head>
 <body>
 
@@ -29,26 +29,36 @@
                 <div class="dashboard_content_main">
                     <div class="row">
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-plus"></i>Create Product</h1>
+                            <h1 class="section_header"><i class="fa fa-plus"></i>Product Toevoegen</h1>
                             <div id="userAddFormContainer">
                                 <form action="db/userdb.php" method="POST" class="appForm" enctype="multipart/form-data">
 
                                   <div class="appformInputcontainer">
-                                    <label for="product_name">Product Name</label>
-                                    <input type="text" class="formInput" class="addFormspacing" id="product_name" placeholder="Enter product name..." name="product_name" /> 
+                                    <label for="product_name">Productnaam</label>
+                                    <input type="text" class="formInput" class="addFormspacing" id="product_name" placeholder="Productnaam invoeren..." name="product_name" /> 
                                   </div>
 
                                   <div class="appformInputcontainer">
-                                    <label for="description">Description</label>
-                                    <textarea class="formInput productTextArea" class="addFormspacing" id="description" placeholder="Enter product description..." name="description"></textarea>
+                                    <label for="stock">Voorraad</label>
+                                    <input type="text" class="formInput" class="addFormspacing" id="stock" name="stock" placeholder="Voer het voorraadbedrag in..." />
                                   </div>
 
                                   <div class="appformInputcontainer">
-                                    <label for="product_img">Product Image</label>
+                                    <label for="created_by">Gemaakt door</label>
+                                    <input type="text" class="formInput" class="addFormspacing" id="created_by" name="created_by" placeholder="Voer de url in..." />
+                                  </div>
+
+                                  <div class="appformInputcontainer">
+                                    <label for="description">Beschrijving</label>
+                                    <textarea class="formInput productTextArea" class="addFormspacing" id="description" placeholder="Voer productomschrijving in..." name="description"></textarea>
+                                  </div>
+
+                                  <div class="appformInputcontainer">
+                                    <label for="product_img">Product afbeelding</label>
                                     <input type="file" class="addFormspacing" name="img" />
                                   </div> 
  
-                                  <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Add Product</button>
+                                  <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Toevoegen</button>
                                 </form>
                                 <?php 
                                       if(isset($_SESSION['response'])){ 

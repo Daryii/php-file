@@ -28,17 +28,17 @@
                 <div class="dashboard_content_main">
                     <div class="row">
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-plus"></i>Create User</h1>
+                            <h1 class="section_header"><i class="fa fa-plus"></i>Gebruiker aanmaken</h1>
                             <div id="userAddFormContainer">
                                 <form action="db/userdb.php" method="POST" class="appForm">
 
                                   <div class="appformInputcontainer">
-                                    <label for="first_name">First Name</label>
+                                    <label for="first_name">Voornaam</label>
                                     <input type="text"class="formInput" id="first_name" name="first_name" /> 
                                   </div>
 
                                   <div class="appformInputcontainer">
-                                    <label for="last_name">Last Name</label>
+                                    <label for="last_name">Achternaam</label>
                                     <input type="text" class="formInput" id="last_name" name="last_name" /> 
                                   </div>
 
@@ -48,11 +48,11 @@
                                   </div>
 
                                   <div class="appformInputcontainer">
-                                    <label for="password">Password</label>
+                                    <label for="password">Wachtwoord</label>
                                     <input type="password" class="formInput" id="password" name="password" /> 
                                   </div>
 
-                                  <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Add User</button>
+                                  <button type="submit" class="appbtn"><i class="fa fa-plus"></i>Registreren</button>
                                 </form>
                                 <?php 
                                       if(isset($_SESSION['response'])){ 
@@ -77,7 +77,6 @@
 <script src="js/script.js"></script>
 <script src="js/jquery/jquery.3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
