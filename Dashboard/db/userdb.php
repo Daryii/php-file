@@ -20,7 +20,7 @@
         // Remove any extra spaces from the column name
         $column = trim($column);
 
-        if (in_array($column, ['updated_at'])) {
+        if (in_array($column, ['updated_at']) || in_array($column, ['created_at'])) {
             $value = date('Y-m-d H:i:s');
         } elseif ($column == 'password') {
             $value =  password_hash($_POST[$column], PASSWORD_DEFAULT);
@@ -54,19 +54,21 @@
     
     
     $table_properties = implode(", ",  array_keys($db_arr));
-    $table_placeholders = ':' . implode(", :", array_keys($db_arr));
+    $table_placeholders = rtrim(str_repeat("?, ", count($db_arr)), ", ");
          
 
 
     try {
-       $sql = "INSERT INTO 
-                    $table_name ($table_properties) 
-                                VALUES ($table_placeholders)";
+        $sql = "INSERT INTO $table_name (`id`, $table_properties) VALUES (NULL, $table_placeholders)";
 
         include('connection.php');
 
+        $conn->beginTransaction();
+
         $stmt = $conn->prepare($sql);
-        $stmt->execute($db_arr);
+        $stmt->execute(array_values($db_arr)); 
+
+        $conn->commit();
 
         $response = [
             'success' => true,
@@ -74,6 +76,9 @@
         ];
         
     } catch (PDOException $e) {
+
+        $conn->rollBack();
+
         $response = [
             'success' => false,
             'message' => $e->getMessage()

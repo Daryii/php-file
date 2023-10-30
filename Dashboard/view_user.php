@@ -32,7 +32,7 @@
                     <div class="row">
                         
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-list"></i>Gebruikerslijst</h1>
+                            <h1 class="section_header"><i class="fa fa-list"></i> Gebruikerslijst</h1>
                             <div class="section_content">
                               <div class="users">
                                 <table>
@@ -57,8 +57,8 @@
                                                 <td><?= date('M d,Y @ h:i:s A' , strtotime($user['created_at'])) ?></td>
                                                 <td><?= date('M d,Y @ h:i:s A' , strtotime($user['updated_at'])) ?></td>
                                                 <td>
-                                                  <a href="" class="editUser" data-userid="<?= $user['id']?>" ><i class="fa fa-pencil"></i>Bewerken</a>
-                                                  <a href="" class="deleteUser" data-userid="<?= $user['id']?>" data-fname="<?= $user['first_name']?>" data-lname="<?= $user['last_name']?>"  ><i class="fa fa-trash"></i>Verwijderen</a>
+                                                  <a href="" class="editUser" data-userid="<?= $user['id']?>" ><i class="fa fa-pencil"></i> Bewerken</a>
+                                                  <a href="" class="deleteUser" data-userid="<?= $user['id']?>" data-fname="<?= $user['first_name']?>" data-lname="<?= $user['last_name']?>"  ><i class="fa fa-trash"></i> Verwijderen</a>
                                                 </td>
                                             </tr>
                                           <?php }?>

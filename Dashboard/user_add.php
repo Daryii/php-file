@@ -28,7 +28,7 @@
                 <div class="dashboard_content_main">
                     <div class="row">
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-plus"></i>Gebruiker aanmaken</h1>
+                            <h1 class="section_header"><i class="fa fa-plus"></i> Gebruiker aanmaken</h1>
                             <div id="userAddFormContainer">
                                 <form action="db/userdb.php" method="POST" class="appForm">
 

@@ -29,7 +29,7 @@
                 <div class="dashboard_content_main">
                     <div class="row">
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-plus"></i>Product Toevoegen</h1>
+                            <h1 class="section_header"><i class="fa fa-plus"></i> Product Toevoegen</h1>
                             <div id="userAddFormContainer">
                                 <form action="db/userdb.php" method="POST" class="appForm" enctype="multipart/form-data">
 
@@ -38,21 +38,33 @@
                                     <input type="text" class="formInput" class="addFormspacing" id="product_name" placeholder="Productnaam invoeren..." name="product_name" /> 
                                   </div>
 
-                                  <div class="appformInputcontainer">
-                                    <label for="stock">Voorraad</label>
-                                    <input type="text" class="formInput" class="addFormspacing" id="stock" name="stock" placeholder="Voer het voorraadbedrag in..." />
+                        
+                                  <!-- Size and Stock Fields -->
+                                  <div class="form-group">
+                                      <label for="size">Size:</label>
+                                      <select name="size" id="size">
+                                          <option value="small">Small</option>
+                                          <option value="medium">Medium</option>
+                                          <option value="large">Large</option>
+                                          <!-- Add more size options here as needed -->
+                                      </select>
                                   </div>
 
-                                  <div class="appformInputcontainer">
-                                    <label for="created_by">Gemaakt door</label>
-                                    <input type="text" class="formInput" class="addFormspacing" id="created_by" name="created_by" placeholder="Voer de url in..." />
+                                  <div class="form-group">
+                                      <label for="stock">Stock:</label>
+                                      <input type="number" name="stock" id="stock" placeholder="Stock">
                                   </div>
 
-                                  <div class="appformInputcontainer">
-                                    <label for="description">Beschrijving</label>
-                                    <textarea class="formInput productTextArea" class="addFormspacing" id="description" placeholder="Voer productomschrijving in..." name="description"></textarea>
+                                  <div class="form-group">
+                                    <label for="supplier-url">Supplier URL:</label>
+                                    <input type="text" name="supplier-url" id="supplier-url" placeholder="Supplier URL">
                                   </div>
 
+                                  <div class="form-group">
+                                      <label for="webshop-url">Webshop URL:</label>
+                                      <input type="text" name="webshop-url" id="webshop-url" placeholder="Webshop URL">
+                                  </div>
+                                  
                                   <div class="appformInputcontainer">
                                     <label for="product_img">Product afbeelding</label>
                                     <input type="file" class="addFormspacing" name="img" />

@@ -29,7 +29,7 @@
                     <div class="row">
                         
                         <div class="column column-12">
-                            <h1 class="section_header"><i class="fa fa-list"></i>Producten Lijst</h1>
+                            <h1 class="section_header"><i class="fa fa-list"></i> Producten Lijst</h1>
                             <div class="section_content">
                               <div class="users">
                                 <table>
@@ -38,11 +38,12 @@
                                             <th>#</th>
                                             <th>Afbeelding</th>
                                             <th>Productnaam</th>
-                                            <th>Voorraad</th>
-                                            <th>Beschrijving</th>
-                                            <th>Gemaakt door</th>
-                                            <th>Bijgewerkt op</th>
-                                            <th>Actie</th>
+                                            <th>Sizes and Stock</th>
+                                            <th>Supplier URL</th>
+                                            <th>Webshop URL</th>
+                                            <th>Updated At</th>
+                                            <th>Action</th>
+
                                         </tr>
                                     </thead>
                                       <tbody>
@@ -53,13 +54,21 @@
                                                   <img class="productImages" src="uploads/products/<?= $product['img'] ?>" alt=""/>
                                                 </td>
                                                 <td class="productName"><?= $product['product_name'] ?></td>                                  
-                                                <td class="stock"><?= $product['stock'] ?></td>
-                                                <td class="description"><?= $product['description'] ?></td>
-                                                <td class="created_by"><?= $product['created_by'] ?></td>
+                                                <td><?= $product['sizes_and_stock'] ?></td>
+                                                <td>
+                                                    <a href="<?= $product['Supplier URL'] ?>" target="_blank">
+                                                        <i class="fa fa-external-link"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= $product['Webshop URL'] ?>" target="_blank">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a>
+                                                </td>
                                                 <td><?= date('M d,Y @ h:i:s A' , strtotime($product['updated_at'])) ?></td>
                                                 <td>
-                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>" ><i class="fa fa-pencil"></i>Bewerken</a>
-                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_name'] ?>" data-pid="<?= $product['id'] ?>"><i class="fa fa-trash"></i>Verwijderen</a>
+                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>" ><i class="fa fa-pencil"></i> Bewerken</a>
+                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_name'] ?>" data-pid="<?= $product['id'] ?>"><i class="fa fa-trash"></i> Verwijderen</a>
                                                 </td>
                                             </tr>
                                           <?php }?>

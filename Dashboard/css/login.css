@@ -184,6 +184,7 @@ div.dashboard_topNav a {
 }
 #logoutbtn{
     float: right;
+    text-decoration: none;
 }
 
 .dashboard_content {
