@@ -14,7 +14,7 @@
  
     //loop thourght the columns
     $db_arr = [];
-    $user = $_SESSION['user'];
+
 
     foreach ($columns as $column) {
         // Remove any extra spaces from the column name

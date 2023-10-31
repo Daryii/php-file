@@ -26,12 +26,11 @@
             <?php include('partials/topNav.php')?> 
             <div class="dashboard_content">
                 <div class="dashboard_content_main">
-                    <div class="row">
-                        
+                    <div class="row">  
                         <div class="column column-12">
                             <h1 class="section_header"><i class="fa fa-list"></i> Producten Lijst</h1>
                             <div class="section_content">
-                              <div class="users">
+                              <div class="products">
                                 <table>
                                     <thead>
                                         <tr>
@@ -43,7 +42,6 @@
                                             <th>Webshop URL</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
-
                                         </tr>
                                     </thead>
                                       <tbody>
@@ -56,12 +54,12 @@
                                                 <td class="productName"><?= $product['product_name'] ?></td>                                  
                                                 <td><?= $product['sizes_and_stock'] ?></td>
                                                 <td>
-                                                    <a href="<?= $product['Supplier URL'] ?>" target="_blank">
+                                                    <a href="<?= $product['supplier_url'] ?>" target="_blank">
                                                         <i class="fa fa-external-link"></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= $product['Webshop URL'] ?>" target="_blank">
+                                                    <a href="<?= $product['webshop_url'] ?>" target="_blank">
                                                         <i class="fa fa-shopping-cart"></i>
                                                     </a>
                                                 </td>
@@ -199,8 +197,6 @@
     // Call the registerEvents function to set up event listeners
     registerEvents();
 </script>
-
-
 
 </body>
 </html>

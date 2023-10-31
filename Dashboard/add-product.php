@@ -41,8 +41,8 @@
                         
                                   <!-- Size and Stock Fields -->
                                   <div class="form-group">
-                                      <label for="size">Size:</label>
-                                      <select name="size" id="size">
+                                      <label for="sizes">Size:</label>
+                                      <select name="size" id="sizes_and_stock">
                                           <option value="small">Small</option>
                                           <option value="medium">Medium</option>
                                           <option value="large">Large</option>
@@ -52,17 +52,17 @@
 
                                   <div class="form-group">
                                       <label for="stock">Stock:</label>
-                                      <input type="number" name="stock" id="stock" placeholder="Stock">
+                                      <input type="number" name="stock" id="sizes_and_stock" placeholder="Stock">
                                   </div>
 
                                   <div class="form-group">
                                     <label for="supplier-url">Supplier URL:</label>
-                                    <input type="text" name="supplier-url" id="supplier-url" placeholder="Supplier URL">
+                                    <input type="text" name="supplier-url" id="supplier_url" placeholder="Supplier URL">
                                   </div>
 
                                   <div class="form-group">
                                       <label for="webshop-url">Webshop URL:</label>
-                                      <input type="text" name="webshop-url" id="webshop-url" placeholder="Webshop URL">
+                                      <input type="text" name="webshop-url" id="webshop_url" placeholder="Webshop URL">
                                   </div>
                                   
                                   <div class="appformInputcontainer">

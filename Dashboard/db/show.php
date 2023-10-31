@@ -3,7 +3,6 @@ include('connection.php');
 
 $table_name = $_SESSION['table'];
 
-
 // Initialize variables for columns to select
 $columns_to_select = '*';
 
