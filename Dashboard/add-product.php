@@ -7,7 +7,6 @@
   
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,30 +38,20 @@
                                   </div>
 
                         
-                                  <!-- Size and Stock Fields -->
                                   <div class="form-group">
-                                      <label for="sizes">Size:</label>
-                                      <select name="size" id="sizes_and_stock">
-                                          <option value="small">Small</option>
-                                          <option value="medium">Medium</option>
-                                          <option value="large">Large</option>
-                                          <!-- Add more size options here as needed -->
-                                      </select>
+                                    <label for="size_and_stock">Size and Stock (JSON format):</label>
+                                    <textarea name="size_and_stock" id="size_and_stock" placeholder="Enter JSON data..."></textarea>
+                                </div>
+
+
+                                  <div class="form-group">
+                                    <label for="supplier_url">Supplier URL:</label>
+                                    <input type="text" name="supplier_url" id="supplier_url" placeholder="Supplier URL">
                                   </div>
 
                                   <div class="form-group">
-                                      <label for="stock">Stock:</label>
-                                      <input type="number" name="stock" id="sizes_and_stock" placeholder="Stock">
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label for="supplier-url">Supplier URL:</label>
-                                    <input type="text" name="supplier-url" id="supplier_url" placeholder="Supplier URL">
-                                  </div>
-
-                                  <div class="form-group">
-                                      <label for="webshop-url">Webshop URL:</label>
-                                      <input type="text" name="webshop-url" id="webshop_url" placeholder="Webshop URL">
+                                      <label for="webshop_url">Webshop URL:</label>
+                                      <input type="text" name="webshop_url" id="webshop_url" placeholder="Webshop URL">
                                   </div>
                                   
                                   <div class="appformInputcontainer">

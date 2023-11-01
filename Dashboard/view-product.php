@@ -5,6 +5,21 @@
   
   $products = include('db/show.php');
   
+  // Retrieve the "size_and_stock" value from the form
+  $sizeAndStockJSON = isset($_POST['size_and_stock']) ? $_POST['size_and_stock'] : '';
+
+  // Ensure it's valid JSON data
+    $sizeAndStockArray = json_decode($sizeAndStockJSON, true);
+
+    if ($sizeAndStockArray === null) {
+        // Handle invalid JSON data
+        $sizeAndStockArray = []; // or any other suitable default value
+    }
+
+// Insert the JSON data into your database
+    $sizeAndStockJSON = json_encode($sizeAndStockArray);
+  
+  // Rest of your code to insert data into the database
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +67,17 @@
                                                   <img class="productImages" src="uploads/products/<?= $product['img'] ?>" alt=""/>
                                                 </td>
                                                 <td class="productName"><?= $product['product_name'] ?></td>                                  
-                                                <td><?= $product['sizes_and_stock'] ?></td>
+                                                <td>
+                                                    <?php
+                                                    $sizeAndStock = json_decode($product['sizes_and_stock'], true);
+                                                    if ($sizeAndStock !== null) {
+                                                        // Iterate through the size and stock data and display it
+                                                        foreach ($sizeAndStock as $size => $stock) {
+                                                            echo "$size: $stock<br>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <a href="<?= $product['supplier_url'] ?>" target="_blank">
                                                         <i class="fa fa-external-link"></i>

@@ -62,13 +62,9 @@
         $sql = "INSERT INTO $table_name (`id`, $table_properties) VALUES (NULL, $table_placeholders)";
 
         include('connection.php');
-
-        $conn->beginTransaction();
-
+    
         $stmt = $conn->prepare($sql);
         $stmt->execute(array_values($db_arr)); 
-
-        $conn->commit();
 
         $response = [
             'success' => true,
@@ -76,8 +72,6 @@
         ];
         
     } catch (PDOException $e) {
-
-        $conn->rollBack();
 
         $response = [
             'success' => false,
