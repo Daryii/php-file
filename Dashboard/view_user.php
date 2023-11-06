@@ -55,7 +55,7 @@
                                                 <td class="lastName"><?= $user['last_name'] ?></td>
                                                 <td class="email"><?= $user['email'] ?></td>
                                                 <td><?= date('M d,Y @ h:i:s A' , strtotime($user['created_at'])) ?></td>
-                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($user['updated_at'])) ?></td>
+                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($user['bijgewerkt_op'])) ?></td>
                                                 <td>
                                                   <a href="" class="editUser" data-userid="<?= $user['id']?>" ><i class="fa fa-pencil"></i> Bewerken</a>
                                                   <a href="" class="deleteUser" data-userid="<?= $user['id']?>" data-fname="<?= $user['first_name']?>" data-lname="<?= $user['last_name']?>"  ><i class="fa fa-trash"></i> Verwijderen</a>
@@ -167,7 +167,7 @@
                     success: function (data) {
                         if (data.success) {
                             Swal.fire('Success', data.message, 'success').then(() => {
-                                // You can add any additional actions after a successful update here
+                                location.reload();
                             });
                         } else {
                             Swal.fire('Error', data.message, 'error');

@@ -37,19 +37,28 @@
                                     <input type="text" class="formInput" class="addFormspacing" id="product_name" placeholder="Productnaam invoeren..." name="product_name" /> 
                                   </div>
 
-                        
-                                  <div class="form-group">
-                                    <label for="size_and_stock">Size and Stock (JSON format):</label>
-                                    <textarea name="size_and_stock" id="size_and_stock" placeholder="Enter JSON data..."></textarea>
-                                </div>
+                                  <div class="appformInputcontainer">
+                                    <label for="voorraad">Voorraad</label>
+                                    <input type="text" class="formInput" class="addFormspacing" id="voorraad" placeholder="Voorraad invoeren..." name="voorraad" /> 
+                                  </div>
 
+                                  <div class="appformInputcontainer">
+                                      <label for="maat">Maat</label>
+                                      <select class="formInput" class="addFormspacing" id="maat" name="maat">
+                                          <option value="S">S</option>
+                                          <option value="M">M</option>
+                                          <option value="L">L</option>
+                                          <!-- Add more options as needed -->
+                                      </select>
+                                  </div>
 
-                                  <div class="form-group">
+                    
+                                  <div class="appformInputcontainer">
                                     <label for="supplier_url">Supplier URL:</label>
                                     <input type="text" name="supplier_url" id="supplier_url" placeholder="Supplier URL">
                                   </div>
 
-                                  <div class="form-group">
+                                  <div class="appformInputcontainer">
                                       <label for="webshop_url">Webshop URL:</label>
                                       <input type="text" name="webshop_url" id="webshop_url" placeholder="Webshop URL">
                                   </div>
@@ -74,7 +83,6 @@
                                 <?php unset($_SESSION['response']); } ?>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -87,5 +95,30 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+    // Add an event listener to the form to handle form submission
+    document.querySelector('.appForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+
+        $.ajax({
+            method: 'POST',
+            data: formData,
+            url: 'db/show.php', // Update the URL to the correct path of the PHP script
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                // Handle the response here
+                const responseMessage = document.querySelector('.responseMessage');
+                responseMessage.innerHTML = data.message;
+                responseMessage.classList.add(data.success ? 'responseMessage__success' : 'responseMessage__error');
+            },
+            error: function () {
+                // Handle AJAX error
+            },
+        });
+    });
+</script>
 </body>
 </html>

@@ -4,22 +4,7 @@
   $_SESSION['table'] = 'products';
   
   $products = include('db/show.php');
-  
-  // Retrieve the "size_and_stock" value from the form
-  $sizeAndStockJSON = isset($_POST['size_and_stock']) ? $_POST['size_and_stock'] : '';
 
-  // Ensure it's valid JSON data
-    $sizeAndStockArray = json_decode($sizeAndStockJSON, true);
-
-    if ($sizeAndStockArray === null) {
-        // Handle invalid JSON data
-        $sizeAndStockArray = []; // or any other suitable default value
-    }
-
-// Insert the JSON data into your database
-    $sizeAndStockJSON = json_encode($sizeAndStockArray);
-  
-  // Rest of your code to insert data into the database
 ?>
 
 <!DOCTYPE html>
@@ -52,10 +37,11 @@
                                             <th>#</th>
                                             <th>Afbeelding</th>
                                             <th>Productnaam</th>
-                                            <th>Sizes and Stock</th>
-                                            <th>Supplier URL</th>
-                                            <th>Webshop URL</th>
-                                            <th>Updated At</th>
+                                            <th>Maat</th>
+                                            <th>Voorraad</th>
+                                            <th>LEVERANCIER URL</th>
+                                            <th>Webwinkel URL</th>
+                                            
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -63,37 +49,36 @@
                                           <?php foreach($products as $index => $product){ ?>   
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td class="Image"> 
-                                                  <img class="productImages" src="uploads/products/<?= $product['img'] ?>" alt=""/>
+                                                <td class="Foto">
+                                                    <img class="productFoto" src="uploads/products/<?= $product['img'] ?>" alt="" />
                                                 </td>
-                                                <td class="productName"><?= $product['product_name'] ?></td>                                  
+                                                <td class="productNaam"><?= $product['product_naam'] ?></td>
                                                 <td>
-                                                    <?php
-                                                    $sizeAndStock = json_decode($product['sizes_and_stock'], true);
-                                                    if ($sizeAndStock !== null) {
-                                                        // Iterate through the size and stock data and display it
-                                                        foreach ($sizeAndStock as $size => $stock) {
-                                                            echo "$size: $stock<br>";
-                                                        }
-                                                    }
-                                                    ?>
+                                                    <select class="maatDropdown">
+                                                        <?php foreach(explode(',', $product['maat']) as $maatOption) { ?>
+                                                            <option value="<?= $maatOption ?>"><?= $maatOption ?></option>
+                                                        <?php } ?>
+                                                    </select>
                                                 </td>
-                                                <td>
+                                                <td class="voorraad">Loading...</td>
+                                                <td class="supplierUrl">
                                                     <a href="<?= $product['supplier_url'] ?>" target="_blank">
                                                         <i class="fa fa-external-link"></i>
                                                     </a>
                                                 </td>
-                                                <td>
+                                                <td class="webshopUrl">
                                                     <a href="<?= $product['webshop_url'] ?>" target="_blank">
                                                         <i class="fa fa-shopping-cart"></i>
                                                     </a>
                                                 </td>
-                                                <td><?= date('M d,Y @ h:i:s A' , strtotime($product['updated_at'])) ?></td>
                                                 <td>
-                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>" ><i class="fa fa-pencil"></i> Bewerken</a>
-                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_name'] ?>" data-pid="<?= $product['id'] ?>"><i class="fa fa-trash"></i> Verwijderen</a>
+                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>"><i class="fa fa-pencil"></i> Bewerken</a>
+                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_naam'] ?>" data-pid="<?= $product['id'] ?>"
+                                                    data-pv="<?= $product['voorraad'] ?>" data-pm="<?= $product['maat'] ?>" data-psurl="<?= $product['supplier_url'] ?>"
+                                                    data-pwurl="<?= $product['webshop_url'] ?>"><i class="fa fa-trash"></i> Verwijderen</a>
                                                 </td>
                                             </tr>
+
                                           <?php }?>
                                       </tbody>
                                 </table>
@@ -161,29 +146,25 @@
 
                 // Getting data
                 userId = targetElement.dataset.pid;
-                Productname = targetElement.closest('tr').querySelector('td.productName').innerHTML;
-                Stock = targetElement.closest('tr').querySelector('td.stock').innerHTML;
-                Description = targetElement.closest('tr').querySelector('td.description').innerHTML;
-                Created_by = targetElement.closest('tr').querySelector('td.created_by').innerHTML;
-
+                Productnaam = targetElement.closest('tr').querySelector('td.productNaam').innerHTML;
+                voorRaad = targetElement.closest('tr').querySelector('td.voorRaad').innerHTML;
+                maat = targetElement.closest('tr').querySelector('td.maat').innerHTML;
+                supplierUrl = targetElement.closest('tr').querySelector('td.supplierUrl').innerHTML;
+                webshopUrl = targetElement.closest('tr').querySelector('td.webshopUrl').innerHTML;
                 Swal.fire({
                     title: 'Update ' + Productname,
                     html: `
                         <div class="form-group">
-                            <label for="Productname" class="labelSpacing">Productnaam:</label>
-                            <input type="text" class="form-control" id="Productname" value="${Productname}">
+                            <label for="Productnaam" class="labelSpacing">Productnaam:</label>
+                            <input type="text" class="form-control" id="Productnaam" value="${Productnaam}">
                         </div>
                         <div class="form-group">
-                            <label for="Description" class="labelSpacing">Beschrijving:</label>
-                            <input type="text" class="form-control" id="Description" value="${Description}">
+                            <label for="voorraad" class="labelSpacing">Voorraad:</label>
+                            <input type="text" class="form-control" id="voorraad" value="${voorRaad}">
                         </div>
                         <div class="form-group">
-                            <label for="stock" class="labelSpacing">Voorraad:</label>
-                            <input type="text" class="form-control" id="stock" value="${Stock}">
-                        </div>
-                        <div class="form-group">
-                            <label for="created_by" class="labelSpacing">Gemaakt door:</label>
-                            <input type="text" class="form-control" id="created_by" value="${Created_by}">
+                            <label for="maat" class="labelSpacing">maat:</label>
+                            <input type="text" class="form-control" id="maat" value="${maat}">
                         </div>
                     `,
                     showCancelButton: true,
@@ -197,9 +178,7 @@
                             data: {
                                 User_id: userId,
                                 p_name: document.getElementById('Productname').value,
-                                Description: document.getElementById('Description').value,
-                                stock_p: document.getElementById('stock').value,
-                                created_by: document.getElementById('created_by').value,
+                                
                             },
                             url: 'db/update-product.php',
                             dataType: 'json',
@@ -221,6 +200,54 @@
 
     // Call the registerEvents function to set up event listeners
     registerEvents();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productRows = document.querySelectorAll('tr');
+
+        productRows.forEach((row, index) => {
+            if (index > 0) {
+                const maatDropdown = row.querySelector('.maatDropdown');
+                const voorraadCell = row.querySelector('.voorraad');
+
+                maatDropdown.addEventListener('change', function () {
+                    const selectedMaat = maatDropdown.value;
+
+                    // Make an AJAX request to the modified file to fetch products based on "maat"
+                    $.ajax({
+                        method: 'POST',
+                        data: { maat: selectedMaat },
+                        url: 'db/show.php', // Use the correct URL to your modified PHP file
+                        dataType: 'json',
+                        success: function (data) {
+                            // Update the product table with the fetched products
+                            updateProductTable(data);
+                        },
+                        error: function () {
+                            // Handle error if the AJAX request fails
+                            voorraadCell.textContent = 'N/A';
+                        }
+                    });
+                });
+            }
+        });
+
+        // Function to update the product table
+        function updateProductTable(products) {
+            const productRows = document.querySelectorAll('tr');
+    
+            // Loop through the products
+            products.forEach((product, index) => {
+            const rowIndex = index + 1; // Rows are 1-indexed in your table
+            const row = productRows[rowIndex];
+            const voorraadCell = row.querySelector('.voorraad');
+
+            // Update the "voorraad" cell with the new value
+            voorraadCell.textContent = product.voorraad;
+    });
+    }
+    });
 </script>
 
 </body>

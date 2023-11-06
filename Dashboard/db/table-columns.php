@@ -5,7 +5,7 @@
             'first_name', 'last_name', 'email', 'password', 'created_at', 'updated_at'
         ],
         'products' => [
-            'img', 'product_name', 'sizes_and_stock', 'supplier_url', 'webshop_url', 'updated_at'
+            'img', 'product_naam', 'maat', 'voorraad', 'supplier_url', 'webshop_url'
         ]
     ];
 

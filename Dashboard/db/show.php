@@ -1,25 +1,28 @@
 <?php
 include('connection.php');
 
+// Get the selected "maat" from the request
+$selectedMaat = isset($_POST['maat']) ? $_POST['maat'] : null;
+
 $table_name = $_SESSION['table'];
 
-// Initialize variables for columns to select
-$columns_to_select = '*';
-
-// Check if the table is the "products" table
-if ($table_name === 'products') {
-    $columns_to_select .= ', JSON_UNQUOTE(JSON_EXTRACT(sizes_and_stock, "$.size")) AS size, JSON_UNQUOTE(JSON_EXTRACT(sizes_and_stock, "$.stock")) AS stock';
+if ($selectedMaat) {
+    // If a "maat" is selected, retrieve the "voorraad" for that "maat"
+    $sql = "SELECT * FROM $table_name WHERE maat = :maat";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':maat', $selectedMaat);
+} else {
+    // If no "maat" is selected, retrieve all products
+    $sql = "SELECT * FROM $table_name";
+    $stmt = $conn->prepare($sql);
 }
 
-// Build the SQL query
-$sql = "SELECT $columns_to_select FROM $table_name ORDER BY updated_at DESC";
-
-$stmt = $conn->prepare($sql);
 $stmt->execute();
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
+// Fetch the data into an array
 $products = $stmt->fetchAll();
 
-// Now $products contains the size and stock information if it's the "products" table
+// Return the array of products
 return $products;
 ?>
