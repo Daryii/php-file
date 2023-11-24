@@ -63,7 +63,6 @@ $products = include('db/show.php');
                                                     <img class="productFoto" src="uploads/products/<?= $product['img'] ?>" alt=""/>
                                                 </td>
                                                 <td class="productNaam"><?= $product['product_naam'] ?></td>
-                                                <td class="maatProduct"><?= $product['maat'] ?></td>
                                                 <td class="voorraad"><?= $product['voorraad'] ?></td>
                                                 <td class="supplierUrl">
                                                     <a href="<?= $product['supplier_url'] ?>" target="_blank">
@@ -108,25 +107,6 @@ $products = include('db/show.php');
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js">
-    </script>
-    <script>
-            const maatFilter = document.getElementById('maatFilter');
-        maatFilter.addEventListener('change', function () {
-            const selectedSize = maatFilter.value;
-            const voorraadCells = document.querySelectorAll('td.voorraad');
-
-            voorraadCells.forEach((voorraadCell) => {
-                const row = voorraadCell.parentElement;
-                const maatCell = row.querySelector('.maatProduct');
-                if (selectedSize === 'all' || maatCell.innerText === selectedSize) {
-                    row.style.display = '';
-                } else {
-                    row.style display = 'none';
-                }
-            });
-        });
-
-
     </script>
     <script>
 
