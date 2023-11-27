@@ -20,7 +20,6 @@ $user = $_SESSION['user'];
     <title>Producten Toevoegen</title>
 </head>
 <body>
-
 <div id="dashboardMainContainer">
     <?php include('partials/side-bar.php') ?>
     <div class="dashboard_content_container" id="dashboard_content_container">
