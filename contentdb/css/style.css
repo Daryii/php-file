@@ -1,0 +1,60 @@
+/* Reset some default styles for better consistency */
+body, p{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #555;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* Add this style to limit the width of images */
+img {
+    height: 250px;
+    width: 1000px;
+}
+
+
+/* Content Styles */
+main {
+    padding: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.pstyle{
+    margin: 20px;
+    padding: 10px;
+    background: #d7d7d7;
+}
