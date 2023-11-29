@@ -14,27 +14,50 @@ header {
     color: #fff;
     text-align: center;
     padding: 20px;
+    list-style: none;
 }
 
 /* Navigation Styles */
 nav {
     background-color: #555;
-    padding: 15px;
-    margin-top: 10px;
+    padding: 10px;
+    
 }
 
-nav a {
-    color: #fff;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    display: inline;
+    margin-right: 10px;
+}
+
+a {
+    color: white;
     text-decoration: none;
-    margin: 0 10px;
+    font-weight: bold;
+}
+
+.pstyle{
+    margin: 20px;
+    padding: 10px;
+    background: #f0f0f0;
 }
 
 /* Add this style to limit the width of images */
 img {
     height: 250px;
-    width: 1000px;
+    
 }
 
+.headerimg{
+    height: 150px;
+    width: 1000px;
+}
 
 /* Content Styles */
 main {
@@ -52,9 +75,3 @@ footer {
     width: 100%;
 }
 
-
-.pstyle{
-    margin: 20px;
-    padding: 10px;
-    background: #d7d7d7;
-}

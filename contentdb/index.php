@@ -1,4 +1,14 @@
-<?php include('db/connection.php'); ?>
+<?php 
+    include('db/connection.php'); 
+
+    $selectedId = isset($_GET['id']) ? $_GET['id'] : 1;
+
+    $stmt = $conn->prepare('SELECT * FROM onderwerpen WHERE id = :selectedId');
+    $stmt->bindParam(':selectedId', $selectedId); // Bind the parameter
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC); // Use fetch instead of setFetchMode
+
+?>
 
 <!doctype html>
 
@@ -10,24 +20,27 @@
 </head>
 <body>
 
-	<!-- laad hier via php je header in (vanuit je includes map) -->
+    <!-- laad hier via php je header in (vanuit je includes map) -->
+    <?php include('includes/header.php'); ?>
+    <!-- Haal hier uit de URL welke pagina uit het menu is opgevraagd. Gebruik deze om de content uit de database te halen. -->
 
-	<?php include('includes/header.php'); ?>
-	<!-- Haal hier uit de URL welke pagina uit het menu is opgevraagd. Gebruik deze om de content uit de database te halen. -->
+    <div id="content">
+        <?php
+            // Controleer of er resultaten zijn
+            if ($result) {
+                echo '<h2 class="pstyle">' . $result['name'] . '</h2>';
+                echo '<p class="pstyle">' . $result['description'] . '</p>';
+                echo '<img src="' . $result['image'] . '" alt="' . $result['name'] . '">';
+            } else {
+                echo '<p>Geen resultaten gevonden.</p>';
+            }
+        ?>
+    </div>
+    <!-- Laat hier de content die je op hebt gehaald uit de database zien op de pagina. -->
 
-	<?php  
-		$stmt = $conn->prepare('SELECT * FROM onderwerpen');
-		$stmt->execute();
-		$stmt->setFetchMode(PDO ::FETCH_ASSOC);
 
-		return $stmt->fetchAll();
-	?>
-	
-	<!-- Laat hier de content die je op hebt gehaald uit de database zien op de pagina. -->
-
-
-	<!-- laad hier via php je footer in (vanuit je includes map)-->
-	<?php include('includes/footer.php'); ?>
+    <!-- laad hier via php je footer in (vanuit je includes map)-->
+    <?php include('includes/footer.php'); ?>
 
 
 </body>

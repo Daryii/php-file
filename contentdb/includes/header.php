@@ -13,12 +13,22 @@ om te bepalen welke inhoud er ingeladen moet worden in je html
 </head>
 <body>
     <header>
-        <img src="images/header.jpg" alt="Headerfoto">
+        <img class="headerimg" src="images/header.jpg" alt="Headerfoto">
         <nav>
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
-        </nav>
+        <ul>
+            <?php
+                // Fetch all items from the database to populate the navigation menu
+                $menuQuery = $conn->prepare('SELECT id FROM onderwerpen');
+                $menuQuery->execute();
+                $menuItems = $menuQuery->fetchAll(PDO::FETCH_ASSOC);
+
+                // Display each menu item with a generic link
+                foreach ($menuItems as $index => $menuItem) {
+                    echo '<li><a href="index.php?id=' . $menuItem['id'] . '">nav' . ($index + 1) . '</a></li>';
+                }
+            ?>
+        </ul>
+    </nav>
     </header>
 </body>
 </html>
