@@ -1,6 +1,6 @@
 <<?php include ('db/connection.php'); 
 
-    $query = "SELECT * FROM characters";
+    $query = "SELECT * FROM characters ORDER BY name";
     $stmt = $conn->query($query);
 
     $characters = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@
         $leftCharacters = array_slice($characters, 0, 5); // Get the first 5 characters
         foreach ($leftCharacters as $character):
         ?>
-            <a class="item" href="character.html">
+            <a class="item" href="character.php?id=<?php echo $character['id']; ?>">
             <div class="left">
             <img class="avatar" src="resources/images/<?php echo $character['avatar']; ?>">
         </div>
@@ -34,9 +34,9 @@
             <h2><?php echo $character['name'];?></h2>
             <div class="stats">
                 <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span><?php echo $character['health'];?></li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php echo $character['attack'];?></li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php echo $character['defense'];?></li>
+                    <li><span class="fa-li"><i class="fas fa-heart"></i></span><?php echo $character['health']; ?></li>
+                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span><?php echo $character['attack']; ?></li>
+                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span><?php echo $character['defense']; ?></li>
                 </ul>
             </div>
         </div>
@@ -51,7 +51,7 @@
         $rightCharacters = array_slice($characters, 5); // Get the next 5 characters
         foreach ($rightCharacters as $character):
         ?>
-            <a class="item" href="character.html">
+            <a class="item" href="character.php?id=<?php echo $character['id']; ?>">
             <div class="left">
             <img class="avatar" src="resources/images/<?php echo $character['avatar']; ?>">
         </div>

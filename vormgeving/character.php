@@ -1,8 +1,20 @@
-<?php include "db/connection.php"; 
-    $query = "SELECT * FROM characters";
-    $stmt = $conn->query($query);
+<?php
+    include "db/connection.php";
 
-    $characters = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (isset($_GET['id'])) {
+        $characterId = $_GET['id'];
+        $query = "SELECT * FROM characters WHERE id = :id";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':id', $characterId, PDO::PARAM_INT);
+        $stmt->execute();
+        $character = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    if (!$character) {
+        // Handle invalid character ID or redirect to a 404 page
+        header("Location: 404.php");
+        exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,30 +40,18 @@
                     <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php echo $character['defense'];?></li>
                 </ul>
                 <ul class="gear">
-                    <li><b>Weapon</b>: <?php $character['weapon'];?></li>
-                    <li><b>Armor</b>: <?php $character['armor']; ?></li>
-                    
+                    <li><b>Weapon</b>: <?php echo $character['weapon'];?></li>
+                    <li><b>Armor</b>: <?php echo $character['armor']; ?></li>
                 </ul>
             </div>
         </div>
         <div class="right">
-            <p>
-                Bowser or King Koopa, is a fictional character and the main antagonist of Nintendo's Mario franchise. In
-                Japan, the character bears the title of Great Demon King. In the U.S., the character was first referred
-                to as "Bowser, King of the Koopas" and "the sorcerer king" in the instruction manual.<br/>
-                <br/>
-                Bowser is the leader of the turtle-like Koopa race, and has been the archenemy of Mario since his first
-                appearance, in the 1985 video game Super Mario Bros.<br/>
-                <br/>
-                His ultimate goals are to kidnap Princess Peach, defeat Mario, and conquer the Mushroom Kingdom. Since
-                his debut, he has appeared in almost every Mario franchise game, usually serving as the main antagonist.
-                Bowser is voiced by Kenny James.
-            </p>
+            <p><?php echo $character['bio'];?></p>
         </div>
         <div style="clear: both"></div>
     </div>
     <?php endforeach; ?>
 </div>
-<footer>&copy; [jenaam] 2023</footer>
+<footer>&copy; [Daryi] 2023</footer>
 </body>
 </html>
