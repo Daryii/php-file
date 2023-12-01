@@ -33,22 +33,12 @@ $products = include('db/show.php');
                             <h1 class="section_header"><i class="fa fa-list"></i> Producten Lijst</h1>
                             <div class="section_content">
                                 <div class="products">
-                                    <label for="maatFilter">Filter op maat:</label>
-                                    <select id="maatFilter">
-                                        <option value="all">Alle maten</option>
-                                        <option value="S">S</option>
-                                        <option value="M">M</option>
-                                        <option value="L">L</option>
-                                        <!-- Add more size options as needed -->
-                                    </select>
-
                                     <table>
                                         <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Afbeelding</th>
                                             <th>Productnaam</th>
-                                            <th>Maat</th>
                                             <th>Voorraad</th>
                                             <th>LEVERANCIER URL</th>
                                             <th>Webwinkel URL</th>
@@ -75,15 +65,10 @@ $products = include('db/show.php');
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="" class="editProduct" data-pid="<?= $product['id'] ?>">
+                                                    <a href="#" class="editProduct" data-pid="<?= $product['id']; ?>">
                                                         <i class="fa fa-pencil"></i> Bewerken
                                                     </a>
-                                                    <a href="" class="deleteProduct" data-name="<?= $product['product_naam'] ?>"
-                                                    data-pid="<?= $product['id'] ?>"
-                                                    data-pv="<?= $product['voorraad'] ?>"
-                                                    data-pm="<?= $product['maat'] ?>"
-                                                    data-psurl="<?= $product['supplier_url'] ?>"
-                                                    data-pwurl="<?= $product['webshop_url'] ?>">
+                                                    <a href="#" class="deleteProduct" data-pid="<?= $product['id']; ?>" data-name="<?= $product['product_naam']; ?>">
                                                         <i class="fa fa-trash"></i> Verwijderen
                                                     </a>
                                                 </td>
@@ -160,9 +145,9 @@ $products = include('db/show.php');
                     userId = targetElement.dataset.pid;
                     Productnaam = targetElement.closest('tr').querySelector('td.productNaam').innerHTML;
                     voorRaad = targetElement.closest('tr').querySelector('td.voorRaad').innerHTML;
-                    maat = targetElement.closest('tr').querySelector('td.maat').innerHTML;
                     supplierUrl = targetElement.closest('tr').querySelector('td.supplierUrl').innerHTML;
                     webshopUrl = targetElement.closest('tr').querySelector('td.webshopUrl').innerHTML;
+                    img = targetElement.closest('tr').querySelector('td.img').innerHTML;
                     Swal.fire({
                         title: 'Update ' + Productname,
                         html: `
@@ -175,8 +160,16 @@ $products = include('db/show.php');
                                 <input type="text" class="form-control" id="voorraad" value="${voorRaad}">
                             </div>
                             <div class="form-group">
-                                <label for="maat" class="labelSpacing">maat:</label>
-                                <input type="text" class="form-control" id="maat" value="${maat}">
+                                <label for="supplierUrl" class="labelSpacing">supplierUrl:</label>
+                                <input type="text" class="form-control" id="supplierUrl" value="${supplierUrl}">
+                            </div>
+                            <div class="form-group">
+                                <label for="webshopUrl" class="labelSpacing">webshopUrl:</label>
+                                <input type="text" class="form-control" id="webshopUrl" value="${webshopUrl}">
+                            </div>
+                            <div class="form-group">
+                                <label for="img" class="labelSpacing">img:</label>
+                                <input type="text" class="form-control" id="img" value="${img}">
                             </div>
                         `,
                         showCancelButton: true,
@@ -190,6 +183,10 @@ $products = include('db/show.php');
                                 data: {
                                     User_id: userId,
                                     p_name: document.getElementById('Productname').value,
+                                    img: document.getElementById('img').value,
+                                    supplierurl: document.getElementById('supplierUrl').value,
+                                    webshopurl: document.getElementById('webshopurl').value,
+                                    voorraad: document.getElementById('voorraad').value
                                     
                                 },
                                 url: 'db/update-product.php',

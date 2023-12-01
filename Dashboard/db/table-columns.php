@@ -2,7 +2,7 @@
 
     $table_columns_mapping = [
         'users' => [
-            'first_name', 'last_name', 'email', 'password', 'created_at', 'updated_at'
+            'first_name', 'last_name', 'email', 'password'
         ],
         'products' => [
             'img', 'product_naam', 'voorraad', 'supplier_url', 'webshop_url'
