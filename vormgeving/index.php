@@ -20,10 +20,10 @@
 </header>
 
 <div id="container">
-    <!-- Left container for the first 5 characters -->
+    
     <div class="left-container">
         <?php
-        $leftCharacters = array_slice($characters, 0, 5); // Get the first 5 characters
+        $leftCharacters = array_slice($characters, 0, 5); 
         foreach ($leftCharacters as $character):
         ?>
             <a class="item" href="character.php?id=<?php echo $character['id']; ?>">
@@ -45,10 +45,9 @@
         <?php endforeach; ?>
     </div>
 
-    <!-- Right container for the next 5 characters -->
     <div class="right-container">
         <?php
-        $rightCharacters = array_slice($characters, 5); // Get the next 5 characters
+        $rightCharacters = array_slice($characters, 5); 
         foreach ($rightCharacters as $character):
         ?>
             <a class="item" href="character.php?id=<?php echo $character['id']; ?>">
@@ -70,7 +69,6 @@
         <?php endforeach; ?>
     </div>
 
-    <!-- Clear the float to ensure proper layout -->
     <div class="clear"></div>
 </div>
 <footer>&copy; [Daryi] 2023</footer>
