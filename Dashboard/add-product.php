@@ -4,6 +4,8 @@ if (!isset($_SESSION['user'])) header('location: login.php');
 $_SESSION['table'] = 'products';
 $_SESSION['redirect_to'] = 'add-product.php';
 $user = $_SESSION['user'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +47,8 @@ $user = $_SESSION['user'];
 
                                 <div class="appformInputcontainer">
                                     <label for="maat">Maat</label>
-                                    <select class="formInput" class="addFormspacing" id="maat" name="maat">
+                                    <!-- Change the name attribute to an array for multiple selections -->
+                                    <select class="formInput" class="addFormspacing" id="maat" name="maat[]" multiple>
                                         <option value="S">S</option>
                                         <option value="M">M</option>
                                         <option value="L">L</option>

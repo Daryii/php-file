@@ -42,6 +42,7 @@ $products = include('db/show.php');
                                             <th>Voorraad</th>
                                             <th>LEVERANCIER URL</th>
                                             <th>Webwinkel URL</th>
+                                            <th>Maat</th> <!-- New column for size -->
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -64,6 +65,7 @@ $products = include('db/show.php');
                                                         <i class="fa fa-shopping-cart"></i>
                                                     </a>
                                                 </td>
+                                                <td class="maat"><?= $product['maat'] ?></td> <!-- New column for size -->
                                                 <td>
                                                     <a href="#" class="editProduct" data-pid="<?= $product['id']; ?>">
                                                         <i class="fa fa-pencil"></i> Bewerken
@@ -148,6 +150,7 @@ $products = include('db/show.php');
                     supplierUrl = targetElement.closest('tr').querySelector('td.supplierUrl').innerHTML;
                     webshopUrl = targetElement.closest('tr').querySelector('td.webshopUrl').innerHTML;
                     img = targetElement.closest('tr').querySelector('td.img').innerHTML;
+                    maat = targetElement.closest('tr').querySelector('td.maat').innerHTML; // New variable for size
                     Swal.fire({
                         title: 'Update ' + Productname,
                         html: `
@@ -171,6 +174,10 @@ $products = include('db/show.php');
                                 <label for="img" class="labelSpacing">img:</label>
                                 <input type="text" class="form-control" id="img" value="${img}">
                             </div>
+                            <div class="form-group">
+                                <label for="maat" class="labelSpacing">Maat:</label> <!-- New field for size -->
+                                <input type="text" class="form-control" id="maat" value="${maat}">
+                            </div>
                         `,
                         showCancelButton: true,
                         confirmButtonText: 'Update',
@@ -186,7 +193,8 @@ $products = include('db/show.php');
                                     img: document.getElementById('img').value,
                                     supplierurl: document.getElementById('supplierUrl').value,
                                     webshopurl: document.getElementById('webshopurl').value,
-                                    voorraad: document.getElementById('voorraad').value
+                                    voorraad: document.getElementById('voorraad').value,
+                                    maat: document.getElementById('maat').value // New value for size
                                     
                                 },
                                 url: 'db/update-product.php',
