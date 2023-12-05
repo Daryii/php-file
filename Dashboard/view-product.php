@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['user'])) header('location: login.php');
-$_SESSION['table'] = 'products';
+    session_start();
+    if (!isset($_SESSION['user'])) header('location: login.php');
+    $_SESSION['table'] = 'products';
 
-$products = include('db/show.php');
+    $products = include('db/show.php');
 ?>
 
 <!DOCTYPE html>
