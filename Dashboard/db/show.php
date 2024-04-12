@@ -25,4 +25,4 @@ $products = $stmt->fetchAll();
 
 // Return the array of products
 return $products;
-?>
+?> 

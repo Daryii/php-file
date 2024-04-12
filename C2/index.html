@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulier</title>
+</head>
+<body>
+    <h1>Vul het formulier in</h1>
+    <?php include 'handle_form.php'; ?>
+    <form method='post' action='handle_form.php'><input type='text' name='name' placeholder='Naam'><br><input type='email' name='email' placeholder='E-mail'><br><input type='password' name='password' placeholder='Wachtwoord'><br><select name='country'><option value='NL'>Nederland</option><option value='DE'>Duitsland</option><option value='FR'>Frankrijk</option></select><br><input type='checkbox' name='driving_license' value='yes'>Rijbewijs<br><input type='date' name='birthdate' placeholder='Geboortedatum'><br><input type='submit' value='Verzenden'>
+    </form>
+</body>
+</html>
