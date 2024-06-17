@@ -8,7 +8,7 @@ class WelcomeController extends Controller
 {
 
     public function welcome() {
-        return view("Jukebox.welcome");
+        return view("Welcome.welcome");
     }
 
 }

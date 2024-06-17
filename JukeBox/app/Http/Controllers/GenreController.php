@@ -16,7 +16,9 @@ class GenreController extends Controller
     }
 
     public function genre() {
-        return view("Jukebox.genre");
+        // get all genres with Genre model -> arrary with genres
+
+        return view("Genre.genre"); // put array here
     }
 
     /**
@@ -24,7 +26,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view("Genre.create");
     }
 
     /**
@@ -32,7 +34,12 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Genre::create([
+            "name" => $request->get("genreName"),
+        ]);
+
+        dd("AAGEKOMEN!");
+
     }
 
     /**
@@ -40,6 +47,8 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
+        // fetch all the songs with the Songs model.
+
         //
     }
 

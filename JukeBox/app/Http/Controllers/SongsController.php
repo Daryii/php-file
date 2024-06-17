@@ -64,6 +64,6 @@ class SongsController extends Controller
     }
 
     public function songs() {
-        return view("Jukebox.songs");
+        return view("Welcome.songs");
     }
 }
