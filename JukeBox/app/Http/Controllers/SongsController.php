@@ -20,7 +20,7 @@ class SongsController extends Controller
      */
     public function create()
     {
-        //
+        return view("Songs.create");
     }
 
     /**
@@ -28,7 +28,14 @@ class SongsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Songs::create([
+            "name" => $request->get("SongsName"),
+            "title" => $request->get("SongsTitle"),
+            "artist" => $request->get("SongsArtist"),
+            "duration" => $request->get("SongsDuration"),
+        ]);
+
+        dd("AAGEKOMEN!");
     }
 
     /**
@@ -64,6 +71,6 @@ class SongsController extends Controller
     }
 
     public function songs() {
-        return view("Welcome.songs");
+        return view("Songs.songs");
     }
 }

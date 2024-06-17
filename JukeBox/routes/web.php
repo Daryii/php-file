@@ -19,3 +19,5 @@ Route::get("/playList", [PlayListController::class,"index"]);
 Route::get("/genre/create", [GenreController::class,"create"]);
 Route::post("/genre/store", [GenreController::class,"store"]);
 
+Route::get("/songs/create", [SongsController::class,"create"]);
+Route::post("/songs/store", [SongsController::class,"store"]);
