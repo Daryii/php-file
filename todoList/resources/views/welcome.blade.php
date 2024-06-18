@@ -18,12 +18,16 @@
             }
         </style>
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased dark:bg-black dark:text-white/50" >
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <h1>Todo List </h1>
-            <label for="listItem">New Todo Item</label> <br>
-            <input type="text" name="listItem">
-            <button>Save Item</button>
+            <form method="post" action="{{ route("saveItem") }}">
+                {{ csrf_field() }}
+                <label for="listItem">New Todo Item</label> <br>
+                <input type="text" name="listItem">
+                <button type="submit">Save Item</button>
+            </form>
+
         </div>
     </body>
 </html>
